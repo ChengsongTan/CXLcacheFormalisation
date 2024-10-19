@@ -1,8 +1,7 @@
-(*  Title:      HOL/Tools/Sledgehammer/sledgehammer_commands.ML
-    Author:     Jasmin Blanchette, TU Muenchen
+(*  
 
 Adds "sledgehammer" and related commands to Isabelle/Isar's outer syntax.
-Chengsong: I tweaked this file to easily call sledgehammer on a proof state, also incuded
+author: I tweaked this file to easily call sledgehammer on a proof state, also incuded
 utilities for removing comments in generated one-liners.
 *)
 
@@ -353,7 +352,7 @@ fun varify_nonfixed_terms_global nonfixeds tm = tm
 
 fun max_outcome1 outcomes =
   let
-    val some = find_first (fn (SH_Some y, msg) =>  not (String.isSubstring "One-line proof reconstruction failed" msg)  | _ => false) outcomes (*chengsong addition: reconstruction failed proofs not valid as proofs*)
+    val some = find_first (fn (SH_Some y, msg) =>  not (String.isSubstring "One-line proof reconstruction failed" msg)  | _ => false) outcomes (*author addition: reconstruction failed proofs not valid as proofs*)
     val timeout = find_first (fn (SH_TimeOut, _) => true | _ => false) outcomes
     val resources_out = find_first (fn (SH_ResourcesOut, _) => true | _ => false) outcomes
     val unknown = find_first (fn (SH_Unknown, _) => true | _ => false) outcomes

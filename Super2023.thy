@@ -1,5 +1,5 @@
-(*   Title:   Super.thy
-     Author:  Chengsong Tan, adapted from Sketch_and_Explore.thy by Florian Haftmann
+(*   
+     adapted from Sketch_and_Explore.thy by Florian Haftmann
 *)
 
 chapter \<open>Experimental commands \<^text>\<open>sketch\<close> and \<^text>\<open>explore\<close>\<close>

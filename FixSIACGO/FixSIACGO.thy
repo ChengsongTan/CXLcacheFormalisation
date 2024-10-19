@@ -334,7 +334,7 @@ if T = \<lparr> buffer1 = x; buffer2 = y; ... \<rparr>
 then 
 
 toggle T = \<lparr> buffer1 := buffer2 T; buffer2 = buffer1 T; ... \<rparr>
-lemma chengsong: shows "toggle (sendReq T i) = sendReq (toggle T) (1-i)"
+lemma toggle_a_function: shows "toggle (sendReq T i) = sendReq (toggle T) (1-i)"
 
 *)
 
