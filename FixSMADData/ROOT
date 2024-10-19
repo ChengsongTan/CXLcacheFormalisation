@@ -1,0 +1,4 @@
+session "FixSMADData" = Base +
+  options [document = false]
+  theories
+    FixSMADData

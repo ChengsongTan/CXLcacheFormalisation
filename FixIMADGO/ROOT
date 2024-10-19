@@ -1,0 +1,4 @@
+session "FixIMADGO" = Base +
+  options [document = false]
+  theories
+    FixIMADGO

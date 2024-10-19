@@ -1,0 +1,4 @@
+session "FixSMADGO" = Base +
+  options [document = false]
+  theories
+    FixSMADGO

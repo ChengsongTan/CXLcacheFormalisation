@@ -1,0 +1,4 @@
+session "FixSharedRdOwnSelf" = Base +
+  options [document = false]
+  theories
+    FixSharedRdOwnSelf

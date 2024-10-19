@@ -1,0 +1,4 @@
+session "FixISDData" = Base +
+  options [document = false]
+  theories
+    FixISDData

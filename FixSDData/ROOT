@@ -1,0 +1,4 @@
+session "FixSDData" = Base +
+  options [document = false]
+  theories
+    FixSDData

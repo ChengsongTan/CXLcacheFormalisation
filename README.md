@@ -14,4 +14,3 @@ Rules are included in the "BuggyRules.thy" file.
 The toplevel theorem resides in "TopLevelTheorem.thy". We only prove one direction of the transactions, using a toggle theorem to flip the proof for the other side, see "Toggle.thy"
 
 For scenario verification, see "Litmus.thy".
-# ASPLOS25CXLcacheFormalisation

@@ -1,0 +1,4 @@
+session "FixMIASnpDataShared" = Base +
+  options [document = false]
+  theories
+    FixMIASnpDataShared

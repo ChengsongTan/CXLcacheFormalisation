@@ -1,0 +1,4 @@
+session "FixSARspIFwdM" = Base +
+  options [document = false]
+  theories
+    FixSARspIFwdM

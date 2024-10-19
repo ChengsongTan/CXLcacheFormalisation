@@ -1,0 +1,4 @@
+session "FixInvalidRdShared" = Base +
+  options [document = false]
+  theories
+    FixInvalidRdShared

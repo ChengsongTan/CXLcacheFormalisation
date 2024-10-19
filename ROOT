@@ -1,74 +1,71 @@
-session "TopA" = HOL +
-  theories
-    BasicInvariants
-    BuggyRules
-    CoherenceProperties
-    Transposed
-    FixInvalidLoad
-    FixSharedLoad
-    FixInvalidStore
-    FixSharedStore
-    FixSharedEvict
-    FixModifiedEvict
-    FixSharedSnpInv
-    FixISDSnpInv
-    FixISDData
-    FixISDIData
-    FixIMADData
-    FixISADData
-    FixIMADGO
-    FixSMADData
-    FixISADGO
-    FixSMADGO
-    FixSMAGO
-    FixSMADSnpInv
-    FixSMDData
-    FixIMAGO
-    FixISAGO
-    FixModifiedStore
-    FixModifiedLoad
-    FixSIAGO_WritePull
-    FixSIAGO_WritePullDrop
+session "AllFixes" = Base +
+  options [document = false]
+  sessions
+    FixIBData
+    FixIDData
     FixIIAGO_WritePull
     FixIIAGO_WritePullDrop
+    FixIMADData
+    FixIMADGO
+    FixIMAGO
     FixIMDData
+    FixISADData
+    FixISADGO
+    FixISAGO
+    FixISDData
+    FixISDIData
+    FixISDSnpInv
+    FixInvalidDirtyEvict
+    FixInvalidLoad
+    FixInvalidRdOwn
+    FixInvalidRdShared
+    FixInvalidStore
+    FixMADData
+    FixMADRspIFwdM
+    FixMARspIFwdM
+    FixMARspIHitSE
+    FixMBData
+    FixMDData
+    FixMIAGO_WritePull
     FixMIASnpDataInvalid
     FixMIASnpDataShared
     FixMIASnpInv
-    FixMIAGO_WritePull
-    FixSIASnpInv
-    FixModifiedSnpInv
-    FixModifiedSnpDataShared
-    FixModifiedSnpDataInvalid
     FixModifiedDirtyEvict
-    FixInvalidRdShared
-    FixInvalidRdOwn
-    FixSharedRdShared
-    FixShared_CleanEvict_NotLastData
-    FixShared_CleanEvict_NotLastDrop
-    FixShared_CleanEvict_Last
-    FixShared_CleanEvictNoData_Last
-    FixShared_CleanEvictNoData_NotLast
-    FixSharedDirtyEvict
-    FixModifiedDirtyEvict
-    FixModifiedRdShared
+    FixModifiedDirtyEvictPrevious
+    FixModifiedEvict
+    FixModifiedLoad
     FixModifiedRdOwn
-    FixSharedRdOwn
-    FixSharedRdOwnSelf
-    FixSDData
+    FixModifiedRdShared
+    FixModifiedSnpDataInvalid
+    FixModifiedSnpDataShared
+    FixModifiedSnpInv
+    FixModifiedStore
     FixSADData
-    FixMDData
-    FixIDData
-    FixMADData
     FixSADRspIFwdM
     FixSADRspSFwdM
-    FixMADRspIFwdM
-    FixMARspIFwdM
     FixSARspIFwdM
     FixSARspSFwdM
     FixSBData
-    FixIBData
-    FixMBData
-    FixInvalidDirtyEvict
-    FixMARspIHitSE
+    FixSDData
     FixSIACGO
+    FixSIAGO_WritePull
+    FixSIAGO_WritePullDrop
+    FixSIASnpInv
+    FixSMADData
+    FixSMADGO
+    FixSMADSnpInv
+    FixSMAGO
+    FixSMDData
+    FixSharedDirtyEvict
+    FixSharedEvict
+    FixSharedLoad
+    FixSharedRdOwn
+    FixSharedRdOwnSelf
+    FixSharedRdShared
+    FixSharedSnpInv
+    FixSharedStore
+    FixShared_CleanEvictNoData_Last
+    FixShared_CleanEvictNoData_NotLast
+    FixShared_CleanEvict_Last
+    FixShared_CleanEvict_NotLastData
+    FixShared_CleanEvict_NotLastDrop

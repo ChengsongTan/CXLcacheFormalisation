@@ -1,0 +1,4 @@
+session "FixSIACGO" = Base +
+  options [document = false]
+  theories
+    FixSIACGO

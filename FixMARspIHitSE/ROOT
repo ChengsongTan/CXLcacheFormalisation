@@ -1,0 +1,4 @@
+session "FixMARspIHitSE" = Base +
+  options [document = false]
+  theories
+    FixMARspIHitSE

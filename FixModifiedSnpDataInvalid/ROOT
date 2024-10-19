@@ -1,0 +1,4 @@
+session "FixModifiedSnpDataInvalid" = Base +
+  options [document = false]
+  theories
+    FixModifiedSnpDataInvalid

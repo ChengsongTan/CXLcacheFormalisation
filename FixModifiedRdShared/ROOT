@@ -1,0 +1,4 @@
+session "FixModifiedRdShared" = Base +
+  options [document = false]
+  theories
+    FixModifiedRdShared

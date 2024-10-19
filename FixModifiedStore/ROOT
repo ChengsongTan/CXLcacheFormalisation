@@ -1,0 +1,4 @@
+session "FixModifiedStore" = Base +
+  options [document = false]
+  theories
+    FixModifiedStore

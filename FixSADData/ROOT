@@ -1,0 +1,4 @@
+session "FixSADData" = Base +
+  options [document = false]
+  theories
+    FixSADData

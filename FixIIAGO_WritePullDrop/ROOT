@@ -1,0 +1,4 @@
+session "FixIIAGO_WritePullDrop" = Base +
+  options [document = false]
+  theories
+    FixIIAGO_WritePullDrop

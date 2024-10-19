@@ -1,0 +1,4 @@
+session "FixModifiedDirtyEvictPrevious" = Base +
+  options [document = false]
+  theories
+    FixModifiedDirtyEvictPrevious

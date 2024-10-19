@@ -1,0 +1,4 @@
+session "FixMBData" = Base +
+  options [document = false]
+  theories
+    FixMBData

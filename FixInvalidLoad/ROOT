@@ -1,0 +1,4 @@
+session "FixInvalidLoad" = Base +
+  options [document = false]
+  theories
+    FixInvalidLoad

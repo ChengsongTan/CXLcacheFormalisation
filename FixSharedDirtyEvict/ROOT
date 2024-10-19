@@ -1,0 +1,4 @@
+session "FixSharedDirtyEvict" = Base +
+  options [document = false]
+  theories
+    FixSharedDirtyEvict

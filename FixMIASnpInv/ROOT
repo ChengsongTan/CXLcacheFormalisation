@@ -1,0 +1,4 @@
+session "FixMIASnpInv" = Base +
+  options [document = false]
+  theories
+    FixMIASnpInv
