@@ -5,7 +5,7 @@ chapter \<open>Experimental commands \<^text>\<open>sketch\<close> and \<^text>\
 
 theory Super2023
   imports Main \<comment> \<open>TODO: generalize existing sledgehammer functions to Pure\<close>
-  keywords "sketch" "explore" "sketch_subgoals" "super_sketch" "super_sketch3" "super_sketch3p" "super_sketch2b" "super_sketch2bp" "nsketch" :: diag
+  keywords "sketch" "explore" "sketch_subgoals" "auto_sketch" "auto_sketch3" "auto_sketch3p" "auto_sketch2b" "auto_sketch2bp" "nsketch" :: diag
 begin
 
 
@@ -429,7 +429,7 @@ fun print_super_isar_skeleton ctxt indent keyword stmt i state  =
 
 
 
-fun print_super_sketch2b group_size ctxt method_text1 clauses state method2_ref method_text2  =
+fun print_auto_sketch2b group_size ctxt method_text1 clauses state method2_ref method_text2  =
   let 
     val n = subgoal_count state;
     val t_start = Timing.start ();
@@ -440,7 +440,7 @@ fun print_super_sketch2b group_size ctxt method_text1 clauses state method2_ref 
     s
   end;
 
-fun print_super_sketch2bp group_size ctxt method_text1 clauses state method2_ref method_text2  =
+fun print_auto_sketch2bp group_size ctxt method_text1 clauses state method2_ref method_text2  =
   let 
     val n = subgoal_count state;
     val t_start = Timing.start ();
@@ -451,7 +451,7 @@ fun print_super_sketch2bp group_size ctxt method_text1 clauses state method2_ref
     s
   end;
 
-fun print_super_sketch3 group_size ctxt method_text1 clauses state method2_ref method_text2 m3ref m3txt msplit_ref msplit_txt mreduce_ref mreduce_txt =
+fun print_auto_sketch3 group_size ctxt method_text1 clauses state method2_ref method_text2 m3ref m3txt msplit_ref msplit_txt mreduce_ref mreduce_txt =
   let 
     val n = subgoal_count state;
     val t_start = Timing.start ();
@@ -463,7 +463,7 @@ fun print_super_sketch3 group_size ctxt method_text1 clauses state method2_ref m
   end;
 
 
-fun print_super_sketch3p group_size ctxt method_text1 clauses state method2_ref method_text2 m3ref m3txt msplit_ref msplit_txt mreduce_ref mreduce_txt =
+fun print_auto_sketch3p group_size ctxt method_text1 clauses state method2_ref method_text2 m3ref m3txt msplit_ref msplit_txt mreduce_ref mreduce_txt =
   let 
     val n = subgoal_count state;
     val t_start = Timing.start ();
@@ -474,7 +474,7 @@ fun print_super_sketch3p group_size ctxt method_text1 clauses state method2_ref 
     s
   end;
 
-fun print_super_sketch group_size ctxt method_text1 clauses state =
+fun print_auto_sketch group_size ctxt method_text1 clauses state =
   let 
     val n = subgoal_count state;
     val t_start = Timing.start ();
@@ -727,57 +727,57 @@ val _ =
     (opt_modes -- Scan.option (Scan.trace Method.parse) >> subgoals_cmd);
 
 val _ = 
-  Outer_Syntax.command \<^command_keyword>\<open>super_sketch2b\<close>
+  Outer_Syntax.command \<^command_keyword>\<open>auto_sketch2b\<close>
     "print sketch of Isar proof text after method application, with oneliners auto generated"
     ((Scan.option (Scan.trace Method.parse) -- Scan.option (Scan.trace Method.parse) ) >> 
       (fn (meth1_ref, meth2_ref) =>
         Toplevel.keep_proof (fn state => 
           let 
             val pstate = Toplevel.proof_of state;
-          in print_proof_text_from_state_generate_oneliners2b (print_super_sketch2b 1) meth1_ref meth2_ref pstate; () end)));
+          in print_proof_text_from_state_generate_oneliners2b (print_auto_sketch2b 1) meth1_ref meth2_ref pstate; () end)));
 
 val _ = 
-  Outer_Syntax.command \<^command_keyword>\<open>super_sketch2bp\<close>
+  Outer_Syntax.command \<^command_keyword>\<open>auto_sketch2bp\<close>
     "print sketch of Isar proof text after method application, with oneliners auto generated"
     ((Scan.option (Scan.trace Method.parse) -- Scan.option (Scan.trace Method.parse) ) >> 
       (fn (meth1_ref, meth2_ref) =>
         Toplevel.keep_proof (fn state => 
           let 
             val pstate = Toplevel.proof_of state;
-          in print_proof_text_from_state_generate_oneliners2b (print_super_sketch2bp 1) meth1_ref meth2_ref pstate; () end)));
+          in print_proof_text_from_state_generate_oneliners2b (print_auto_sketch2bp 1) meth1_ref meth2_ref pstate; () end)));
 
 
 val _ = 
-  Outer_Syntax.command \<^command_keyword>\<open>super_sketch3\<close>
+  Outer_Syntax.command \<^command_keyword>\<open>auto_sketch3\<close>
     "print sketch of Isar proof text after method application, with oneliners auto generated"
     ((Scan.option (Scan.trace Method.parse) -- Scan.option (Scan.trace Method.parse) -- Scan.option (Scan.trace Method.parse) -- Scan.option (Scan.trace Method.parse) -- Scan.option (Scan.trace Method.parse)) >> 
       (fn ((((meth1_ref, meth2_ref), meth3_ref), msplit_ref), mreduce_ref) =>
         Toplevel.keep_proof (fn state => 
           let 
             val pstate = Toplevel.proof_of state;
-          in print_proof_text_from_state_generate_oneliners3 (print_super_sketch3 1) meth1_ref meth2_ref meth3_ref msplit_ref mreduce_ref pstate; () end)));
+          in print_proof_text_from_state_generate_oneliners3 (print_auto_sketch3 1) meth1_ref meth2_ref meth3_ref msplit_ref mreduce_ref pstate; () end)));
 
 
 val _ = 
-  Outer_Syntax.command \<^command_keyword>\<open>super_sketch3p\<close>
+  Outer_Syntax.command \<^command_keyword>\<open>auto_sketch3p\<close>
     "print sketch of Isar proof text after method application, with oneliners auto generated"
     ((Scan.option (Scan.trace Method.parse) -- Scan.option (Scan.trace Method.parse) -- Scan.option (Scan.trace Method.parse) -- Scan.option (Scan.trace Method.parse) -- Scan.option (Scan.trace Method.parse)) >> 
       (fn ((((meth1_ref, meth2_ref), meth3_ref), msplit_ref), mreduce_ref) =>
         Toplevel.keep_proof (fn state => 
           let 
             val pstate = Toplevel.proof_of state;
-          in print_proof_text_from_state_generate_oneliners3 (print_super_sketch3p 1) meth1_ref meth2_ref meth3_ref msplit_ref mreduce_ref pstate; () end)));
+          in print_proof_text_from_state_generate_oneliners3 (print_auto_sketch3p 1) meth1_ref meth2_ref meth3_ref msplit_ref mreduce_ref pstate; () end)));
 
 
 val _ = 
-  Outer_Syntax.command \<^command_keyword>\<open>super_sketch\<close>
+  Outer_Syntax.command \<^command_keyword>\<open>auto_sketch\<close>
     "print sketch of Isar proof text after method application, with oneliners auto generated"
     ((Scan.option (Scan.trace Method.parse) ) >> 
       (fn meth1_ref =>
         Toplevel.keep_proof (fn state => 
           let 
             val pstate = Toplevel.proof_of state;
-          in print_proof_text_from_state_generate_oneliners (print_super_sketch 1) meth1_ref  pstate; () end)));
+          in print_proof_text_from_state_generate_oneliners (print_auto_sketch 1) meth1_ref  pstate; () end)));
 
 val _ = 
   Outer_Syntax.command \<^command_keyword>\<open>nsketch\<close>
