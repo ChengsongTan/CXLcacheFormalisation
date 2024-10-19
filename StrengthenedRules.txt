@@ -1,0 +1,141 @@
+
+Rules that have simplifying tracking assumptions:
+
+1. **SIACGO'**
+   ```isabelle
+   definition "SIACGO' T i = (if CSTATE SIAC T i ∧ nextGOPendingIs GO T i ∧ nextGOPendingState Invalid T i ∧ saneSIACGO T i ∧ GTS T ((i + 1) mod 2) then
+     [consumeGODiscard  i Invalid T] else [])"
+   ```
+*Ideal*
+ idealized tracking part of saneSIACGO predicate. The IIA-->Not SharedM part says that if both are not sharers, then the Host must know this.
+ Three other clauses about HSTATE means that since host knows this device has downgraded with a CENoData, they must not be expecting data from this device.
+
+2. **HostShared_CleanEvict_NotLastData'**
+   ```isabelle
+   definition "HostShared_CleanEvict_NotLastData' T i = (if HSTATE SharedM T ∧ nextReqIs CleanEvict T i ∧ ¬(lastSharer T) ∧ GTS T ((i + 1) mod 2) ∧ ¬ CSTATE IIA T ((i + 1) mod 2)
+     then [clearBuffer (sendEvictResp GO_WritePull i SB (nextReqID T i) T)] else [])"
+   ```
+   *Ideal:*Idealized tracking so host knows that the other cache should not be in IIA state 
+   because it should be a sharer (as this rule is fired only when the currently device is not the last sharer) 
+   for evicting cache to be not the last sharer.
+
+3. **HostShared_CleanEvict_NotLastDrop'**
+   ```isabelle
+   definition "HostShared_CleanEvict_NotLastDrop' T i = (if HSTATE SharedM T ∧ nextReqIs CleanEvict T i ∧ ¬(lastSharer T) ∧ GTS T ((i + 1) mod 2) ∧ ¬ CSTATE IIA T ((i + 1) mod 2)
+     then [clearBuffer (sendEvictResp GO_WritePullDrop i SharedM (nextReqID T i) T)] else [])"
+   ```
+   *Ideal:* Same as above rule
+
+4. **HostShared_CleanEvict_Last'**
+   ```isabelle
+   definition "HostShared_CleanEvict_Last' T i = (if HSTATE SharedM T ∧ nextReqIs CleanEvict T i ∧ (lastSharer T) ∧  GTS T ((i + 1) mod 2)
+     then [clearBuffer (sendEvictResp GO_WritePull i IB (nextReqID T i) T) ] else [])"
+   ```
+   *Ideal:* The condition `(lastSharer T)` allows viewing the cache's state to check the current device is the last sharer.
+
+5. **HostShared_CleanEvictNoData_NotLast'**
+   ```isabelle
+   definition "HostShared_CleanEvictNoData_NotLast' T i = (if HSTATE SharedM T ∧ nextReqIs CleanEvictNoData T i ∧ ¬(lastSharer T) ∧  GTS T ((i + 1) mod 2)
+     then [clearBuffer (sendEvictResp GO i SharedM (nextReqID T i) T)] else [])"
+   ```
+   *Ideal:* The condition `(NOT lastSharer T)` allows viewing the cache's state to check the current device is not the last sharer.
+
+6. **HostShared_CleanEvictNoData_Last'**
+   ```isabelle
+   definition "HostShared_CleanEvictNoData_Last' T i = (if HSTATE SharedM T ∧ nextReqIs CleanEvictNoData T i ∧ (lastSharer T) ∧  GTS T ((i + 1) mod 2)
+     then [clearBuffer (sendEvictResp GO i InvalidM (nextReqID T i) T)] else [])"
+   ```
+   *Ideal:* The condition `(lastSharer T)` allows viewing the cache's state to check the current device is the last sharer.
+
+******** -1 rule from now *********
+
+7. **HostModifiedDirtyEvict'**
+
+   ```isabelle
+   definition "HostModifiedDirtyEvict' T i = (if HSTATE ModifiedM T ∧ nextReqIs DirtyEvict T i  ∧ GTS T ((i + 1) mod 2) ∧ CSTATE MIA T i ∧ ¬ (CSTATE SIA T ((i + 1) mod 2) ∧ nextGOPendingIs GO_WritePullDrop T ((i + 1) mod 2))
+     then [clearBuffer (sendEvictResp GO_WritePull i ID (nextReqID T i) T)] else [])"
+   ```
+
+   *Strengthening:* Involves `CSTATE MIA T i` and a condition on another device's state `¬ (CSTATE SIA T ((i + 1) mod 2) ∧ nextGOPendingIs GO_WritePullDrop T ((i + 1) mod 2))`.
+yes, added that the other side must have processed GWPD--no way to get an ACK, but if this side is already modified and trying to downgrade via DE, then
+must be GWPD have stayed in channel since owner has got ownership, and then DE being processed. This forces the other side device to process gwpd immediately
+*Ideal*: allowed to inspect state of issuing device to make sure it is indeed downgrading
+
+
+******************** -2 rules from now ***********************
+8. **HostInvalidDirtyEvict'**
+
+    ```isabelle
+    definition "HostInvalidDirtyEvict' T i = (if HSTATE InvalidM T ∧ nextReqIs DirtyEvict T i  ∧ GTS T ((i + 1) mod 2) ∧ CSTATE IIA T i
+      then [clearBuffer (sendEvictResp GO_WritePull i IB (nextReqID T i) T)] else [])"
+    ```
+
+    *Ideal:* Involves `CSTATE IIA T i`.
+ idealized checking of cache state since it must come from a previous owner
+
+
+9. **HostSharedRdOwn'**
+
+    ```isabelle
+    definition "HostSharedRdOwn' T i = (if HSTATE SharedM T ∧ nextReqIs RdOwn T i ∧ CSTATE Shared T ((i + 1) mod 2)   
+      then [clearBuffer (invalidateSharers (nextReqID T i) i T) ] else [])"
+    ```
+
+    *Ideal:* The condition `CSTATE Shared T ((i + 1) mod 2)` refers to another device's state, just idealized checking of cache state so other side
+    is indeed a sharer and therefore is invalidated only as necessary.
+
+10. **HostSharedRdOwnSelf'**
+
+    ```isabelle
+    definition "HostSharedRdOwnSelf' T i = (if HSTATE SharedM T ∧ nextReqIs RdOwn T i ∧ CSTATE Invalid T ((i + 1) mod 2)
+      then [clearBuffer (noInvalidateSharers (nextReqID T i) i T) ] else [])"
+    ```
+
+    *Ideal:* Involves `CSTATE Invalid T ((i + 1) mod 2)`, idealized checking the other side is indeed not valid, and therefore current requestor can
+    assume ownership immediately.
+
+11. **HostIDData'**
+
+    ```isabelle
+    definition "HostIDData' T i = (if HSTATE ID T ∧ nextDTHDataFrom i T ∧ CSTATE Invalid T i ∧ (CSTATE IIA T ((i+1)mod 2) ∨ CSTATE Invalid T ((i+1)mod 2) ∨ CSTATE SIA T ((i+1)mod 2))
+      then [clearBuffer (copyInDataHost i InvalidM T)  ] else [])"
+    ```
+
+    *Ideal:* Includes `CSTATE Invalid T i` and `(CSTATE IIA T ((i+1)mod 2) ∨ CSTATE Invalid T ((i+1)mod 2) ∨ CSTATE SIA T ((i+1)mod 2))`,
+    which both check that the requestor is indeed Invalid and the other device is also in some sort of invalid state.
+****** -3 from now on ******
+
+12. **HostSBData'**
+
+    ```isabelle
+    definition "HostSBData' T i = (if HSTATE SB T ∧ nextDTHDataFrom i T ∧ CSTATE Invalid T i
+      then [clearBuffer (discardDataHost i SharedM T)  ] else [])"
+    ```
+
+    *Ideal:* Involves `CSTATE Invalid T i`. checks the current eviction data indeed is from a previous owner.
+
+
+
+13. **HostMBData'**
+
+    ```isabelle
+    definition "HostMBData' T i = (if HSTATE MB T ∧ nextDTHDataFrom i T ∧ CSTATE Invalid T i
+    then [clearBuffer (discardDataHost i ModifiedM T) ] else [])"
+    ```
+
+    *Ideal:* Involves `CSTATE Invalid T i`. checks the current eviction data indeed is from a previous owner.
+
+
+14. **HostIBDataPrevious'**
+
+    ```isabelle
+    definition "HostIBDataPrevious' T i = (if HSTATE IB T ∧ nextDTHDataFrom i T ∧ CSTATE Invalid T i ∧ CSTATE Invalid T ((i + 1) mod 2)
+    then [clearBuffer (discardDataHost i InvalidM T)] else [])"
+    ```
+
+    *Ideal:* Involves `CSTATE Invalid T i`. checks the current eviction data indeed is from a previous owner, and indeed overall system is in Invalid state.
+
+
+
+
+
