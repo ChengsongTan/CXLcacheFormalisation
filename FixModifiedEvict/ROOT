@@ -1,4 +1,0 @@
-session "FixModifiedEvict" = Base +
-  options [document = false]
-  theories
-    FixModifiedEvict

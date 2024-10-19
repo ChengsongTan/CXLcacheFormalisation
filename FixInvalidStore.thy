@@ -1,4 +1,4 @@
-theory FixInvalidStore  imports Base.BasicInvariants Base.Super2023 begin
+theory FixInvalidStore  imports BasicInvariants Super2023 begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 
 lemma snps2_InvalidStore: shows "snps2 ( T [ 0 +=rdreq RdOwn] [ 0 s= IMAD]) = snps2 T"

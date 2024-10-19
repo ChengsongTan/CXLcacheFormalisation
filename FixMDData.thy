@@ -1,4 +1,4 @@
-theory   FixMDData  imports Base.BasicInvariants Base.Super2023 begin
+theory   FixMDData  imports BasicInvariants Super2023 begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 
 lemma nextHTDDataPending_real_SDData: shows "nextHTDDataPending T 0 = nextHTDDataPending ( T [ Dev2 +=h2dd hmsg] [ =hv v] [ 5 sHost= ModifiedM] [ Dev1 -=d2hdHead ]) 0"

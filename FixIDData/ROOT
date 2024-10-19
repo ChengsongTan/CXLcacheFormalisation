@@ -1,4 +1,0 @@
-session "FixIDData" = Base +
-  options [document = false]
-  theories
-    FixIDData

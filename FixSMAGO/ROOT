@@ -1,4 +1,0 @@
-session "FixSMAGO" = Base +
-  options [document = false]
-  theories
-    FixSMAGO

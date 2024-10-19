@@ -1,4 +1,0 @@
-session "FixIBData" = Base +
-  options [document = false]
-  theories
-    FixIBData

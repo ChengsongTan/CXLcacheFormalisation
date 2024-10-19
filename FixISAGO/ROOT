@@ -1,4 +1,0 @@
-session "FixISAGO" = Base +
-  options [document = false]
-  theories
-    FixISAGO

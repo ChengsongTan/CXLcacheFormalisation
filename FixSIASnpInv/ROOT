@@ -1,4 +1,0 @@
-session "FixSIASnpInv" = Base +
-  options [document = false]
-  theories
-    FixSIASnpInv

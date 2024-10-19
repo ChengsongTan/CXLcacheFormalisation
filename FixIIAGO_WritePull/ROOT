@@ -1,4 +1,0 @@
-session "FixIIAGO_WritePull" = Base +
-  options [document = false]
-  theories
-    FixIIAGO_WritePull

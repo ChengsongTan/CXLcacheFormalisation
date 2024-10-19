@@ -1,4 +1,0 @@
-session "FixSharedStore" = Base +
-  options [document = false]
-  theories
-    FixSharedStore

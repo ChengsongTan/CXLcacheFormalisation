@@ -1,4 +1,0 @@
-session "FixShared_CleanEvict_NotLastDrop" = Base +
-  options [document = false]
-  theories
-    FixShared_CleanEvict_NotLastDrop

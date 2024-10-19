@@ -1,4 +1,0 @@
-session "FixSADRspSFwdM" = Base +
-  options [document = false]
-  theories
-    FixSADRspSFwdM

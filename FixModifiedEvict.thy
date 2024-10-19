@@ -1,4 +1,4 @@
-theory FixModifiedEvict  imports Base.BasicInvariants Base.Super2023 begin
+theory FixModifiedEvict  imports BasicInvariants Super2023 begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 
 lemma snps2_ModifiedEvict: shows "snps2 ( T [ 0 +=rdreq DirtyEvict] [ 0 s= MIA]) = snps2 T"

@@ -1,4 +1,4 @@
-theory FixSharedStore  imports Base.BasicInvariants Base.Super2023 begin
+theory FixSharedStore  imports BasicInvariants Super2023 begin
 sledgehammer_params[timeout=30]
 
 lemma snps2_SharedStore: shows "snps2 ( T [ 0 +=rdreq RdOwn] [ 0 s= SMAD]) = snps2 T"

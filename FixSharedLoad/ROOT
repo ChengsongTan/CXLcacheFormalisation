@@ -1,4 +1,0 @@
-session "FixSharedLoad" = Base +
-  options [document = false]
-  theories
-    FixSharedLoad

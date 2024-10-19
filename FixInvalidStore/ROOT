@@ -1,4 +1,0 @@
-session "FixInvalidStore" = Base +
-  options [document = false]
-  theories
-    FixInvalidStore

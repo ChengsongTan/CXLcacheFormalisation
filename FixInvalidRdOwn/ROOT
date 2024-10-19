@@ -1,4 +1,0 @@
-session "FixInvalidRdOwn" = Base +
-  options [document = false]
-  theories
-    FixInvalidRdOwn

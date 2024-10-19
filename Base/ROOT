@@ -1,7 +1,0 @@
-session "Base" = HOL +
-  options [document = false]
-  theories
-    BasicInvariants
-    BuggyRules
-    CoherenceProperties
-    Transposed

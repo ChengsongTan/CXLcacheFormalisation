@@ -1,4 +1,0 @@
-session "FixMADData" = Base +
-  options [document = false]
-  theories
-    FixMADData

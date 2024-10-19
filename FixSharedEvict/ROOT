@@ -1,4 +1,0 @@
-session "FixSharedEvict" = Base +
-  options [document = false]
-  theories
-    FixSharedEvict

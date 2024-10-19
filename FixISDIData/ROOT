@@ -1,4 +1,0 @@
-session "FixISDIData" = Base +
-  options [document = false]
-  theories
-    FixISDIData

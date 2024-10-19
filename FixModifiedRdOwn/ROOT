@@ -1,4 +1,0 @@
-session "FixModifiedRdOwn" = Base +
-  options [document = false]
-  theories
-    FixModifiedRdOwn

@@ -1,4 +1,0 @@
-session "FixModifiedLoad" = Base +
-  options [document = false]
-  theories
-    FixModifiedLoad

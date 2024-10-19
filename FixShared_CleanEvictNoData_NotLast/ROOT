@@ -1,4 +1,0 @@
-session "FixShared_CleanEvictNoData_NotLast" = Base +
-  options [document = false]
-  theories
-    FixShared_CleanEvictNoData_NotLast

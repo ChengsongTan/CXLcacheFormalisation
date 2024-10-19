@@ -1,6 +1,10 @@
-session "AllFixes" = Base +
+session "AllFixes" = HOL +
   options [document = false]
-  sessions
+  theories
+    Transposed
+    CoherenceProperties
+    BuggyRules
+    BasicInvariants
     FixIBData
     FixIDData
     FixIIAGO_WritePull

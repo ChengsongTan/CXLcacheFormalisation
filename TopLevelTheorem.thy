@@ -341,13 +341,14 @@ proof -
     apply(elim conjE)
     by assumption
 qed
-definition SWMR_p :: "Type1State \<Rightarrow> bool" where [simp]: 
-  "SWMR_p T = ( (CSTATE Modified T 0 \<longrightarrow>  \<not> CSTATE Shared T 1) \<and>  
+(*this is the "SWMR" definition in paper*)
+definition SWMR_pp :: "Type1State \<Rightarrow> bool" where [simp]: 
+  "SWMR_pp T = ( (CSTATE Modified T 0 \<longrightarrow>  \<not> CSTATE Shared T 1) \<and>  
               (CSTATE Modified T 1 \<longrightarrow>  \<not> CSTATE Shared T 0) \<and> 
               (CSTATE Modified T 0 \<longrightarrow> \<not>CSTATE Modified T 1) \<and>
               (CSTATE Modified T 1 \<longrightarrow> \<not>CSTATE Modified T 0) )"
 
-corollary SWMR_plus_cache: assumes "allTransStar T T'" and "initial_state T"  shows " SWMR_p T'"
+corollary SWMR_pplus_cache: assumes "allTransStar T T'" and "initial_state T"  shows " SWMR_pp T'"
   apply(insert assms)
 
 proof -
@@ -357,7 +358,7 @@ proof -
     apply(insert SWMR_plus)
     unfolding SWMR_state_machine_def
     apply(elim conjE)
-    unfolding SWMR_p_def
+    unfolding SWMR_pp_def
     proof (intro conjI)
   show goal1: "CSTATE Modified T' 0 \<longrightarrow> \<not> CSTATE Shared T' 1"
     if "SWMR T'"
@@ -3552,7 +3553,7 @@ proof -
       and "HSTATE SAD T' \<and> nextDTHDataFrom 1 T' \<longrightarrow> \<not> CSTATE MIA T' 0 \<and> \<not> CSTATE MIA T' 1"
     using that apply (smt (verit))done
 qed
-
 qed
+
 
 end

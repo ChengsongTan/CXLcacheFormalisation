@@ -1,4 +1,0 @@
-session "FixSMDData" = Base +
-  options [document = false]
-  theories
-    FixSMDData

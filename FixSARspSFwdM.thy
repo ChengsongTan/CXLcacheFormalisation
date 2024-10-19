@@ -1,4 +1,4 @@
-theory FixSARspSFwdM  imports Base.BasicInvariants Base.Super2023 begin
+theory FixSARspSFwdM  imports BasicInvariants Super2023 begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 
 

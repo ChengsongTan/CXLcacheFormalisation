@@ -1,4 +1,0 @@
-session "FixModifiedSnpInv" = Base +
-  options [document = false]
-  theories
-    FixModifiedSnpInv

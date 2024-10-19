@@ -1,4 +1,0 @@
-session "FixIMAGO" = Base +
-  options [document = false]
-  theories
-    FixIMAGO

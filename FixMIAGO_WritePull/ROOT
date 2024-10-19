@@ -1,4 +1,0 @@
-session "FixMIAGO_WritePull" = Base +
-  options [document = false]
-  theories
-    FixMIAGO_WritePull
