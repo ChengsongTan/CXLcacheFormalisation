@@ -1,4 +1,4 @@
-theory TopLevelTheoremDev1 imports BasicInvariants  InitialState
+theory TopLevelTheorem imports BasicInvariants  InitialState
 FixInvalidLoad
 FixSharedLoad
 FixInvalidStore

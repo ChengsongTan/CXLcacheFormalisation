@@ -2810,7 +2810,7 @@ SWMR_state_machine T \<Longrightarrow> Lall (HostModifiedDirtyEvict' T 0) SWMR_s
   unfolding HostModifiedDirtyEvict'_def
   apply(insert HostModified_DirtyEvict'_coherent_aux_simpler)
   
-  by (smt (verit) helper)
+  by (metis HostModified_DirtyEvict'_coherent_aux_simpler helper one_mod_two_eq_one plus_nat.add_0 sendEvictResp_def)
 
 end
 
