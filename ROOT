@@ -73,3 +73,4 @@ session "AllFixes" = HOL +
     FixShared_CleanEvict_Last
     FixShared_CleanEvict_NotLastData
     FixShared_CleanEvict_NotLastDrop
+    FixSharedEvictData

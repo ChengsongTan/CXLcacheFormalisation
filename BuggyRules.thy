@@ -16,6 +16,8 @@ definition InvalidLoad' :: "Type1State \<Rightarrow> nat \<Rightarrow> Type1Stat
 definition InvalidStore' :: "Type1State \<Rightarrow> nat \<Rightarrow> Type1State list" where [simp]: "InvalidStore' T i = (if (CSTATE Invalid T i \<and> nextStore T i) then [clearBuffer (sendReq RdOwn IMAD i T)] else [])"
 definition SharedStore' :: "Type1State \<Rightarrow> nat \<Rightarrow> Type1State list" where [simp]: "SharedStore' T i = (if (CSTATE Shared T i \<and> nextStore T i) then [clearBuffer (sendReq RdOwn SMAD i T)] else [])"
 definition SharedEvict' :: "Type1State \<Rightarrow> nat \<Rightarrow> Type1State list" where [simp]: "SharedEvict' T i = (if (CSTATE Shared T i \<and> nextEvict T i) then [clearBuffer (sendReq CleanEvictNoData SIAC i T)] else [])"
+definition SharedEvictData' :: "Type1State \<Rightarrow> nat \<Rightarrow> Type1State list" where [simp]: "SharedEvictData' T i = (if (CSTATE Shared T i \<and> nextEvict T i) then [clearBuffer (sendReq CleanEvict SIA i T)] else [])"
+
 definition ModifiedEvict' :: "Type1State \<Rightarrow> nat \<Rightarrow> Type1State list" where [simp]: "ModifiedEvict' T i = (if (CSTATE Modified T i \<and> nextEvict T i) then [clearBuffer (sendReq DirtyEvict MIA i T)] else [])"
 \<comment>\<open>5 "Instruction starting" transitions are grouped together\<close> 
 
@@ -358,6 +360,7 @@ definition "SharedLoad T i = (map update_clock (SharedLoad' T i))"
 definition "InvalidStore T i = map update_clock (InvalidStore' T i)"
 definition "SharedStore T i = map update_clock (SharedStore' T i)"
 definition "SharedEvict T i = map update_clock (SharedEvict' T i)"
+definition "SharedEvictData T i = map update_clock (SharedEvictData' T i)"
 definition "ModifiedEvict T i = map update_clock (ModifiedEvict' T i)"
 \<comment>\<open>
 definition "InvalidSnpData T i = map update_clock (InvalidSnpData' T i)"
@@ -733,6 +736,7 @@ SharedLoad',
 InvalidStore',
 SharedStore',
 SharedEvict',
+SharedEvictData',
 ModifiedEvict',
 SharedSnpInv',
 ISDSnpInv',
@@ -805,6 +809,7 @@ SharedLoad,
 InvalidStore,
 SharedStore,
 SharedEvict,
+SharedEvictData,
 ModifiedEvict,
 SharedSnpInv,
 ISDSnpInv,
