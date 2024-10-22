@@ -278,9 +278,9 @@ value "spg_chain_liberal"
 value "spg_chain_bad"
 
 
-value "list_prop_exists (concat spg_chain) true_MESI_violation"
-value "list_prop_exists (concat spg_chain_liberal) true_MESI_violation"
-value "list_prop_exists (concat spg_chain_bad) true_MESI_violation"
+value "list_prop_exists (concat spg_chain) (\<lambda>T. \<not> SWMR_state_machine T)"
+value "list_prop_exists (concat spg_chain_liberal) (\<lambda>T. \<not> SWMR_state_machine T)"
+value "list_prop_exists (concat spg_chain_bad) (\<lambda>T. \<not> SWMR_state_machine T)"
 
 definition "tree_violations (Tss) = list_prop_exists (concat Tss) true_MESI_violation"
 
@@ -709,6 +709,13 @@ value " GTS_liberal_chain"
   value "list_prop_exists (concat GTS_good_chain) true_MESI_violation"
   value "list_prop_exists (concat GTS_liberal_chain) true_MESI_violation"
   value "list_prop_exists (concat GTS_bad_chain) true_MESI_violation"
+
+(*the stronger property also holds for good rules, as indicated by our proof,
+not too surprising but interesting: liberal rules don't violate swmr++ either
+*)
+  value "list_prop_exists (concat GTS_good_chain) (\<lambda>T. \<not> SWMR_state_machine T)"
+  value "list_prop_exists (concat GTS_liberal_chain) (\<lambda>T. \<not> SWMR_state_machine T)"
+  value "list_prop_exists (concat GTS_bad_chain) (\<lambda>T. \<not> SWMR_state_machine T)"
 \<comment>\<open>This tries to reach a mesi violation with only good transitions, which fails
 value " GTS_chain_violation"
   value "list_prop_exists GTS_chain_violation true_MESI_violation"
