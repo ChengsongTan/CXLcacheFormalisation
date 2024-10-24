@@ -1,5 +1,5 @@
 
-theory FixSharedRdOwnSelf  imports BasicInvariants Super2023  begin
+theory FixSharedRdOwnSelf  imports BasicInvariants   begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 
 sledgehammer_params[timeout = 15]

@@ -1,4 +1,4 @@
-theory FixSharedEvictData  imports BasicInvariants Super2023 begin
+theory FixSharedEvictData  imports BasicInvariants  begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 
 lemma snps2_SharedEvictData: shows "snps2 ( T [ 0 +=rdreq CleanEvict] [ 0 s= SIA]) = snps2 T"

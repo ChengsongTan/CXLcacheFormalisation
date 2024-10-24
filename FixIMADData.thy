@@ -1,4 +1,4 @@
-theory FixIMADData  imports BasicInvariants Super2023 begin
+theory FixIMADData  imports BasicInvariants  begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 
 lemma nextSnoopPending_IMADData1: shows "nextSnoopPending ( T [ 0 s= IMA] [ 0 :=dd getHTDDataOrMakeup T 0] [ 0 -=devd ]) 1 = nextSnoopPending T 1"

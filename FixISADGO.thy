@@ -1,4 +1,4 @@
-theory FixISADGO  imports BasicInvariants Super2023 begin
+theory FixISADGO  imports BasicInvariants  begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 
 
