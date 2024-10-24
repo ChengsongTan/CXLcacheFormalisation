@@ -1,4 +1,4 @@
-theory InitialState imports BasicInvariants Super2023
+theory InitialState imports BasicInvariants 
 begin
 
 sledgehammer_params[timeout = 10]
