@@ -9,12 +9,11 @@ This artifact consists of the formal model of the cache coherence protocol of Co
 - **Algorithm**: CXL.cache Cache Coherence Protocol  
 - **Program**: Isabelle theories  
 - **Compilation**: `isabelle jedit`  
-- **Run-time environment**: Windows, with Isabelle2023 installed. Double-click the “Cygwin-Terminal.bat” file in the installation folder, and run the command (in the Execution step) from that terminal.  
+- **Run-time environment**: For Windows, double-click the “Cygwin-Terminal.bat” file in the installation folder, and run the command (in the Execution step) from that terminal.  For Linux/MacOS run from any terminal.
 - **Execution**:  
   - First change into the artifact top-level directory.  
   - Then run the command `isabelle jedit -l AllFixes` in the artifact top-level directory.  
 - **Output**: Messages shown on the proof state panel indicating theory files have been successfully processed.  
-- **How much disk space required (approximately)?**: 100GB  
 - **How much time is needed to prepare workflow (approximately)?**: 10 minutes  
 - **How much time is needed to complete experiments (approximately)?**: 3 hours  
 - **Publicly available?**: Yes  
@@ -51,16 +50,18 @@ The artifact depends on Isabelle2023, available at:
 
 ---
 
-## A.4 Installation
+
+---
+
+## Running Experiment
+
+### Preparing suitable running environment
+#### For Windows:
 Download Isabelle2023 (see above URL). Double-click the downloaded installer to complete the installation process; it is suggested to put Isabelle2023 in some easy-to-access folder such as the desktop so it is easy to navigate there (needed later).
 
 Clone or download the artifact from GitHub (see above URL). If you downloaded a zip of the artifact, uncompress this zip file.
 
----
-
-## Running Experiment on Linux
-
-### Download and extract and prepare the Isabelle to be run as a command
+#### For Linux: 
 Download using this address:
 ```
 https://isabelle.in.tum.de/website-Isabelle2023/dist/Isabelle2023_linux.tar.gz
@@ -107,11 +108,35 @@ This will output the path of a directory, e.g.,
 ```
 /home/ubuntu/.isabelle/Isabelle2023
 ```
-复制
 
-### Run the workflow and see evaluation results
-Navigate to this directory, and open (create one if it does not yet exist) the file named `ROOTS` in an editor. Append a line containing the `artifact_directory` path. Save and close the `ROOTS` file.  
 
+
+
+### Run the workflow: preparation
+Navigate to this directory, and open (create one if it does not yet exist) the file named `ROOTS` in an editor. Append a line containing the `artifact_directory` path. 
+**`artifact_directory`** refers to the artifact’s top-level path. They are in different formats for different operating systems.
+
+#### For Linux/MacO
+In normal Unix-style formats. e.g. `/Users/Joe/CXLcacheFormalisation-main`
+
+#### For Windows
+In Cygwin path format. In this format:  
+- A Windows path such as:  
+```
+C:\Users\Joe\CXLcacheFormalisation-main
+```
+
+is expressed as:  
+```
+/cygdrive/c/Users/Joe/CXLcacheFormalisation-main
+```
+(i.e., replace `C:\` with `/cygdrive/c/` and use forward slashes for the rest).
+
+
+
+Save and close the `ROOTS` file.  
+
+### Execute command running artifact
 In a terminal, change into `artifact_directory` using the `cd` command. Then execute:
 ```
 isabelle jedit -l AllFixes
@@ -128,7 +153,7 @@ The process can be left running in the background. Taking roughly 3 hours, it sh
 
 ---
 
-## A.6 Evaluation and expected results
+## Expected results
 After the last step above, open the `TopLevelTheorem.thy` file using the prover IDE (click on the IDE top-left corner “File → Open”). Scroll to the bottom to see the main theorems and corollaries (also presented in the paper).
 
 You should find that every theorem has gone through without error, and that no occurrences of the `sorry` keyword exist in the file. This indicates the proof has been successfully mechanically checked.
