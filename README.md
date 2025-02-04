@@ -98,23 +98,7 @@ https://github.com/ChengsongTan/CXLcacheFormalisation
 
 
 In the following, `artifact_directory` refers to the artifact’s top-level path. To check that `artifact_directory` is the required folder, confirm that it contains many Isabelle theory files, such as `BasicInvariants.thy`, as well as a file called `ROOT`.
-
-### Prepare the necessary settings
-Run the command:
-```
-isabelle getenv ISABELLE_HOME_USER
-```
-This will output the path of a directory, e.g.,  
-```
-/home/ubuntu/.isabelle/Isabelle2023
-```
-
-
-
-
-### Run the workflow: preparation
-Navigate to this directory, and open (create one if it does not yet exist) the file named `ROOTS` in an editor. Append a line containing the `artifact_directory` path. 
-**`artifact_directory`** refers to the artifact’s top-level path. They are in different formats for different operating systems.
+They are in different formats for different operating systems.
 
 #### For Linux/MacO
 In normal Unix-style formats. e.g. `/Users/Joe/CXLcacheFormalisation-main`
@@ -134,6 +118,21 @@ is expressed as:
 
 
 
+### Prepare the necessary settings
+Run the command:
+```
+isabelle getenv ISABELLE_HOME_USER
+```
+This will output the path of a directory, e.g.,  
+```
+/home/ubuntu/.isabelle/Isabelle2023
+```
+
+
+
+
+### Run the workflow: preparation
+Navigate to this directory, and open (create one if it does not yet exist) the file named `ROOTS` in an editor. Append a line containing the `artifact_directory` path. 
 Save and close the `ROOTS` file.  
 
 ### Execute command running artifact
