@@ -6,6 +6,7 @@ Rules that have simplifying tracking assumptions:
    definition "SIACGO' T i = (if CSTATE SIAC T i ∧ nextGOPendingIs GO T i ∧ nextGOPendingState Invalid T i ∧ saneSIACGO T i ∧ GTS T ((i + 1) mod 2) then
      [consumeGODiscard  i Invalid T] else [])"
    ```
+   CSTATE SIAC T i ∧ nextGOPendingIs GO T i \<not> HSTATE SAD T \<and> \<not> HSTATE MD T \<and> \<not> HSTATE MA T \<and> (CSTATE IIA T 1 \<longrightarrow> \<not> HSTATE SharedM T)
 *Ideal*
  idealized tracking part of saneSIACGO predicate. The IIA-->Not SharedM part says that if both are not sharers, then the Host must know this.
  Three other clauses about HSTATE means that since host knows this device has downgraded with a CENoData, they must not be expecting data from this device.
