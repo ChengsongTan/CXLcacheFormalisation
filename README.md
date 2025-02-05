@@ -58,6 +58,14 @@ The artifact depends on Isabelle2023, available at:
 ### Preparing suitable running environment
 #### For Windows:
 Download Isabelle2023 (see above URL). Double-click the downloaded installer to complete the installation process; it is suggested to put Isabelle2023 in some easy-to-access folder such as the desktop so it is easy to navigate there (needed later).
+##### Potential issues with downloading and installing Isabelle2023 on Windows
+Tested on Windows Server 2022 (Desktop Experience)
+
+(a) If you use Edge and you're not given permission to open the file (e.g. Edge says `Isabelle2023.exe isn't commonly downloaded ...`), do the following:
+
+Click three dots (more actions) > Keep > Show more > Keep anyway. Confirm that we can now execute Isabelle2023.exe.
+
+(b) If Isabelle shows `IO error … (access is denied)`, ignore it & just close Isabelle.
 
 Clone or download the artifact from GitHub (see above URL). If you downloaded a zip of the artifact, uncompress this zip file.
 
@@ -97,10 +105,17 @@ https://github.com/ChengsongTan/CXLcacheFormalisation
 ```
 
 
+
+
+
+
+
+### artifact_directory
 In the following, `artifact_directory` refers to the artifact’s top-level path. To check that `artifact_directory` is the required folder, confirm that it contains many Isabelle theory files, such as `BasicInvariants.thy`, as well as a file called `ROOT`.
 They are in different formats for different operating systems.
+Store  `artifact_directory` for later steps. It will have a different format for different operating systems:
 
-#### For Linux/MacO
+#### For Linux/MacOS
 In normal Unix-style formats. e.g. `/Users/Joe/CXLcacheFormalisation-main`
 
 #### For Windows
@@ -114,12 +129,14 @@ is expressed as:
 ```
 /cygdrive/c/Users/Joe/CXLcacheFormalisation-main
 ```
-(i.e., replace `C:\` with `/cygdrive/c/` and use forward slashes for the rest).
+(i.e., replace `C:\` with `/cygdrive/c/` and use forward slashes for the rest of the path).
 
 
 
 ### Prepare the necessary settings
-Run the command:
+
+#### Linux/MacOS
+In a terminal, run the command:
 ```
 isabelle getenv ISABELLE_HOME_USER
 ```
@@ -128,19 +145,42 @@ This will output the path of a directory, e.g.,
 /home/ubuntu/.isabelle/Isabelle2023
 ```
 
-
+#### For Windows
+In the Windows explorer, go to the folder where Isabelle2023
+is installed and double-click the "Cygwin-Terminal.bat" file
+to open a Cygwin terminal (a minimal installation of Cygwin
+ships with Isabelle).
+In the Cygwin terminal, run `isabelle getenv ISABELLE_HOME_USER`. This will lead to the path of a directory being output, e.g.
+```
+/cygdrive/c/Users/Joe/.isabelle/Isabelle2023
+```
+Navigate to the directory. If you use Windows Explorer and the path is `cygdrive/c/...`, this means `c/...` "
 
 
 ### Run the workflow: preparation
-Navigate to this directory, and open (create one if it does not yet exist) the file named `ROOTS` in an editor. Append a line containing the `artifact_directory` path. 
+After navigating to the directory as detailed above, open (create one if it does not yet exist) the file named `ROOTS` in an editor. Append a line containing the `artifact_directory` path. (Note: in Windows, ensure this is in Cygwin format (see above `artifact_direcotry` section).)
 Save and close the `ROOTS` file.  
 
+#### For Windows: 
+Make sure no empty newlines in file `ISABELLE_HOME_USER/ROOTS`. This is known to cause issue in Isabelle.
+
+
 ### Execute command running artifact
+
+#### For Linux/MacOS
 In a terminal, change into `artifact_directory` using the `cd` command. Then execute:
 ```
 isabelle jedit -l AllFixes
 ```
 
+#### For Windows
+
+In the Cygwin terminal, change into `artifact_directory` using the `cd` command. Then execute:
+```
+isabelle jedit -l AllFixes
+```
+
+### GUI building process
 Once you have entered this command, the Isabelle IDE will open, with messages starting:
 ```
 Build started for Isabelle/AllFixes ...
@@ -148,7 +188,7 @@ Building AllFixes ...
 AllFixes: theory AllFixes.Transposed
 ```
 
-The process can be left running in the background. Taking roughly 3 hours, it should complete with an Isabelle session called `AllFixes`. The `AllFixes` session contains necessary context for the top-level theorem (e.g., all the rule lemmas).
+The process can be left running in the background. Taking roughly 3 hours on an Intel core i9 14900HX machien with 64GB RAM, it should complete with an Isabelle session called `AllFixes`. The `AllFixes` session contains necessary context for the top-level theorem (e.g., all the rule lemmas).
 
 ---
 
