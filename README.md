@@ -179,6 +179,11 @@ In the Cygwin terminal, change into `artifact_directory` using the `cd` command.
 ```
 isabelle jedit -l AllFixes
 ```
+Sometimes the build can get stuck in the middle, possibly due to Isabelle hitting the memory limits and swapping happens.
+Increasing the heap size limit can potentially alleviate this issue:
+```
+isabelle jedit -l AllFixes -J -Xmx8192m
+```
 
 ### GUI building process
 Once you have entered this command, the Isabelle IDE will open, with messages starting:
