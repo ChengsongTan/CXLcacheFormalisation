@@ -9,13 +9,15 @@ This artifact consists of the formal model of the cache coherence protocol of Co
 - **Algorithm**: CXL.cache Cache Coherence Protocol  
 - **Program**: Isabelle theories  
 - **Compilation**: `isabelle jedit`  
-- **Run-time environment**: For Windows, double-click the “Cygwin-Terminal.bat” file in the installation folder, and run the command (in the Execution step) from that terminal.  For Linux/MacOS run from any terminal.
+- **Run-time environment**: 
+For Windows, double-click the “Cygwin-Terminal.bat” file in the installation folder, and run the command (in the Execution step) from that terminal.  
+For Linux/MacOS run from any terminal.
 - **Execution**:  
   - First change into the artifact top-level directory.  
   - Then run the command `isabelle jedit -l AllFixes` in the artifact top-level directory.  
 - **Output**: Messages shown on the proof state panel indicating theory files have been successfully processed.  
 - **How much time is needed to prepare workflow (approximately)?**: 10 minutes  
-- **How much time is needed to complete experiments (approximately)?**: 3 hours  
+- **How much time is needed to complete experiments (approximately)?**: 3-10 hours (It is recommended to use a machines with at least 32GB memory to achieve the lower bound.)
 - **Publicly available?**: Yes  
 - **Workflow automation framework used?**: Isabelle sessions  
 
@@ -159,7 +161,7 @@ Navigate to the directory. If you use Windows Explorer and the path is `cygdrive
 
 ### Run the workflow: preparation
 After navigating to the directory as detailed above, open (create one if it does not yet exist) the file named `ROOTS` in an editor. Append a line containing the `artifact_directory` path. (Note: in Windows, ensure this is in Cygwin format (see above `artifact_direcotry` section).)
-Save and close the `ROOTS` file.  
+Save and close the `ROOTS` file.  (Note: the name is `ROOTS` instead of `ROOT`. Also note the addition only happens in your `$ISABELLE_HOME_USER` directory, not the artifact directory.)
 
 #### For Windows: 
 Make sure no empty newlines in file `ISABELLE_HOME_USER/ROOTS`. This is known to cause issue in Isabelle.
