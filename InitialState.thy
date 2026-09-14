@@ -137,9 +137,7 @@ proof -
   show goal22: "C_msg_not RdShared Invalid T"
      apply  (cases "reqs1 T") apply  (auto)
 apply (smt (verit) i1 startsWithProp.simps(1)) 
-apply (smt (verit) i0 list.discI) 
-apply (smt (verit) i0 list.discI) 
- done
+apply (smt (verit) i0 list.discI)  apply (smt (verit) i0 list.discI)   done
 
   show goal23: "H_msg_P_same ModifiedM (nextReqIs DirtyEvict) (\<lambda>T i. CSTATE MIA T i \<or> CSTATE IIA T i) T"
     apply  (insert assms , unfold SWMR_def C_msg_P_same_def C_msg_P_oppo_def H_msg_P_same_def C_H_state_def C_msg_not_def H_msg_P_oppo_def C_msg_P_host_def C_state_not_def H_C_state_msg_same_def H_C_state_msg_oppo_def C_msg_state_def C_not_C_msg_def)(**)apply (smt (verit) HOST_State.distinct(5) HSTATE_invariant4 i14) done
@@ -172,9 +170,7 @@ apply (smt (verit) i0 list.discI)
   show goal37: "C_msg_state RdShared ISAD T"
      apply  (cases "reqs1 T") apply  (auto)
 apply (smt (verit) i1 startsWithProp.simps(1)) 
-apply (smt (verit) i0 list.discI) 
-apply (smt (verit) i0 list.discI) 
- done
+apply (smt (verit) i0 list.discI)  apply (smt (verit) i0 list.discI)   done
 
   show goal38: "C_not_C_msg Modified ISAD nextGOPending T"
     apply  (insert assms , unfold SWMR_def C_msg_P_same_def C_msg_P_oppo_def H_msg_P_same_def C_H_state_def C_msg_not_def H_msg_P_oppo_def C_msg_P_host_def C_state_not_def H_C_state_msg_same_def H_C_state_msg_oppo_def C_msg_state_def C_not_C_msg_def)(**)apply (smt (verit) CSTATE_different2 MESI_State.distinct(143) MESI_State.distinct(5) i13) done
@@ -182,17 +178,13 @@ apply (smt (verit) i0 list.discI)
      apply  (cases "reqs1 T") apply  (auto)
 apply (smt (verit) i10) 
 apply (smt (verit) i11) 
-apply (smt (verit) i10) 
-apply (smt (verit) i11) 
- done
+apply (smt (verit) i10)  apply (smt (verit) i11)   done
 
   show goal40: "C_msg_P_same Invalid nextStore (\<lambda>T i. \<not> nextSnoopIs SnpInv T i) T"
      apply  (cases "reqs1 T") apply  (auto)
 apply (smt (verit) i2 startsSnp.simps(1)) 
 apply (smt (verit) i3 startsSnp.simps(1)) 
-apply (smt (verit) i0 list.discI) 
-apply (smt (verit) i0 list.discI) 
- done
+apply (smt (verit) i0 list.discI)  apply (smt (verit) i0 list.discI)   done
 
   show goal41: "C_msg_P_same ISAD nextGOPending (\<lambda>T i. \<not> nextReqIs RdShared T i) T"
     apply  (insert assms , unfold SWMR_def C_msg_P_same_def C_msg_P_oppo_def H_msg_P_same_def C_H_state_def C_msg_not_def H_msg_P_oppo_def C_msg_P_host_def C_state_not_def H_C_state_msg_same_def H_C_state_msg_oppo_def C_msg_state_def C_not_C_msg_def)(**)apply (smt (verit) CSTATE_different1 CSTATE_different2 MESI_State.distinct(143) i12 i13) done
@@ -216,9 +208,7 @@ apply (smt (verit) i0 list.discI)
      apply  (cases "reqs1 T") apply  (auto)
 apply (smt (verit) i3) 
 apply (smt (verit) i2) 
-apply (smt (verit) i3) 
-apply (smt (verit) i2) 
- done
+apply (smt (verit) i3)  apply (smt (verit) i2)   done
 
   show goal51: "CSTATE Invalid T 0 \<longrightarrow> snps2 T = [] \<and> snpresps2 T = [] \<and> reqresps1 T = [] \<and> htddatas1 T = []"
     apply  (insert assms)(**)apply (smt (verit) i10 i3 i4 i7) done
@@ -345,9 +335,7 @@ apply (smt (verit) i2)
 by (smt (verit) i0 list.discI) 
   show goal112: "nextReqIs DirtyEvict T 1 \<longrightarrow> CSTATE MIA T 1 \<or> CSTATE SIA T 1 \<or> CSTATE IIA T 1"
      apply  (cases "reqs1 T") apply  (auto)
-apply (smt (verit) i1 startsWithProp.simps(1)) 
-apply (smt (verit) i0 list.discI) 
- done
+apply (smt (verit) i1 startsWithProp.simps(1))  apply (smt (verit) i0 list.discI)   done
 
   show goal113: "snpresps1 T \<noteq> [] \<longrightarrow> reqresps2 T = []"
     apply  (insert assms)(**)apply (smt (verit) i6) done
@@ -485,15 +473,11 @@ apply (smt (verit) i0 list.discI)
     apply  (insert assms)(**)apply (smt (verit) i10 i11 nextHTDDataPending_def) done
   show goal180: "nextDTHDataFrom 0 T \<longrightarrow> \<not> nextDTHDataFrom 1 T"
      apply  (cases "reqs1 T") apply  (auto)
-apply (smt (verit) i8) 
-apply (smt (verit) i8) 
- done
+apply (smt (verit) i8)  apply (smt (verit) i8)   done
 
   show goal181: "nextDTHDataFrom 1 T \<longrightarrow> \<not> nextDTHDataFrom 0 T"
      apply  (cases "reqs1 T") apply  (auto)
-apply (smt (verit) i8) 
-apply (smt (verit) i8) 
- done
+apply (smt (verit) i8)  apply (smt (verit) i8)   done
 
   show goal182: "HSTATE SA T \<longrightarrow> dthdatas2 T = [] \<and> dthdatas1 T = []"
     apply  (insert assms)(**)apply (smt (verit) i8 i9) done
@@ -557,9 +541,9 @@ apply (smt (verit) i8)
     apply  (insert assms , unfold SWMR_def C_msg_P_same_def C_msg_P_oppo_def H_msg_P_same_def C_H_state_def C_msg_not_def H_msg_P_oppo_def C_msg_P_host_def C_state_not_def H_C_state_msg_same_def H_C_state_msg_oppo_def C_msg_state_def C_not_C_msg_def)(**)apply (smt (verit) CSTATE_different1 CSTATE_different2 MESI_State.distinct(175) i12 i13) done
   show goal212: "C_msg_P_same SIA (nextGOPendingIs GO_WritePullDrop) (\<lambda>T i. \<not> nextSnoopPending T i) T"
     apply  (insert assms , unfold SWMR_def C_msg_P_same_def C_msg_P_oppo_def H_msg_P_same_def C_H_state_def C_msg_not_def H_msg_P_oppo_def C_msg_P_host_def C_state_not_def H_C_state_msg_same_def H_C_state_msg_oppo_def C_msg_state_def C_not_C_msg_def)(**)apply (smt (verit) CSTATE_different1 CSTATE_different2 MESI_State.distinct(175) i12 i13) done
-  show goal213: "CSTATE SIA T 0 \<and> nextGOPendingIs GO_WritePullDrop T 0 \<longrightarrow> HSTATE InvalidM T \<or> HSTATE SharedM T \<or> HSTATE SB T \<or> HSTATE IB T \<or> HSTATE ModifiedM T"
+  show goal213: "CSTATE SIA T 0 \<and> nextGOPendingIs GO_WritePullDrop T 0 \<longrightarrow> HSTATE InvalidM T \<or> HSTATE SharedM T \<or> HSTATE SB T \<or> HSTATE IB T \<or> HSTATE ModifiedM T \<or> HSTATE ID T"
     apply  (insert assms)(**)apply (smt (verit) i14) done
-  show goal214: "CSTATE SIA T 1 \<and> nextGOPendingIs GO_WritePullDrop T 1 \<longrightarrow> HSTATE InvalidM T \<or> HSTATE SharedM T \<or> HSTATE SB T \<or> HSTATE IB T \<or> HSTATE ModifiedM T"
+  show goal214: "CSTATE SIA T 1 \<and> nextGOPendingIs GO_WritePullDrop T 1 \<longrightarrow> HSTATE InvalidM T \<or> HSTATE SharedM T \<or> HSTATE SB T \<or> HSTATE IB T \<or> HSTATE ModifiedM T \<or> HSTATE ID T"
     apply  (insert assms)(**)apply (smt (verit) i14) done
   show goal215: "C_msg_P_same SIA (nextGOPendingIs GO_WritePullDrop) (\<lambda>T i. \<not> nextDTHDataPending T i) T"
     apply  (insert assms , unfold SWMR_def C_msg_P_same_def C_msg_P_oppo_def H_msg_P_same_def C_H_state_def C_msg_not_def H_msg_P_oppo_def C_msg_P_host_def C_state_not_def H_C_state_msg_same_def H_C_state_msg_oppo_def C_msg_state_def C_not_C_msg_def)(**)apply (smt (verit) CSTATE_different1 CSTATE_different2 MESI_State.distinct(175) i12 i13) done
@@ -688,9 +672,7 @@ apply (smt (verit) i8)
 by (smt (verit) i0 list.discI) 
   show goal277: "nextReqIs RdOwn T 1 \<longrightarrow> CSTATE SMAD T 1 \<or> CSTATE IMAD T 1"
      apply  (cases "reqs1 T") apply  (auto)
-apply (smt (verit) i1 startsWithProp.simps(1)) 
-apply (smt (verit) i0 list.discI) 
- done
+apply (smt (verit) i1 startsWithProp.simps(1))  apply (smt (verit) i0 list.discI)   done
 
   show goal278: "CSTATE SMAD T 0 \<and> nextSnoopIs SnpInv T 0 \<and> CXL_SPG_used T 0 \<longrightarrow> nextReqIs RdOwn T 0"
     apply  (insert assms)(**)apply (smt (verit) CSTATE_different1 MESI_State.distinct(167) i12) done
@@ -742,15 +724,11 @@ apply (smt (verit) i0 list.discI)
     apply  (insert assms)(**)apply (smt (verit) i11) done
   show goal302: "nextSnpRespIs RspSFwdM T 0 \<longrightarrow> CSTATE Shared T 0 \<or> CSTATE SMAD T 0 \<or> CSTATE SIA T 0 \<or> CSTATE SIAC T 0"
      apply  (cases "reqs1 T") apply  (auto)
-apply (smt (verit) i6 startsWithProp.simps(1)) 
-apply (smt (verit) i0 list.discI) 
- done
+apply (smt (verit) i6 startsWithProp.simps(1))  apply (smt (verit) i0 list.discI)   done
 
   show goal303: "nextSnpRespIs RspSFwdM T 1 \<longrightarrow> CSTATE Shared T 1 \<or> CSTATE SMAD T 1 \<or> CSTATE SIA T 1 \<or> CSTATE SIAC T 1"
      apply  (cases "reqs1 T") apply  (auto)
-apply (smt (verit) i7 startsWithProp.simps(1)) 
-apply (smt (verit) i0 list.discI) 
- done
+apply (smt (verit) i7 startsWithProp.simps(1))  apply (smt (verit) i0 list.discI)   done
 
   show goal304: "(CSTATE Invalid T 0 \<or> CSTATE ISDI T 0 \<or> nextReqIs RdOwn T 0) \<and> HSTATE MA T \<longrightarrow> (CSTATE IMAD T 1 \<or> CSTATE SMAD T 1) \<and> nextHTDDataPending T 1 \<or> CSTATE IMA T 1 \<or> CSTATE SMA T 1"
     apply  (insert assms)(**)apply (smt (verit) HOST_State.distinct(119) HSTATE_invariant4 i14) done
@@ -820,26 +798,20 @@ apply (smt (verit) i0 list.discI)
     apply  (insert assms)(**)apply (smt (verit) CSTATE_different1 CSTATE_different2 MESI_State.distinct(5) MESI_State.distinct(95) i12 i13) done
   show goal337: "nextReqIs RdOwn T 0 \<longrightarrow> \<not> CSTATE ISAD T 0 \<and> \<not> CSTATE Invalid T 0"
      apply  (cases "reqs1 T") apply  (auto)
-apply (smt (verit) i0 list.discI) 
-apply (smt (verit) i0 list.discI) 
- done
+apply (smt (verit) i0 list.discI)  apply (smt (verit) i0 list.discI)   done
 
   show goal338: "nextReqIs RdOwn T 1 \<longrightarrow> \<not> CSTATE ISAD T 1 \<and> \<not> CSTATE Invalid T 1"
      apply  (cases "reqs1 T") apply  (auto)
 apply (smt (verit) i1 startsWithProp.simps(1)) 
 apply (smt (verit) i1 startsWithProp.simps(1)) 
-apply (smt (verit) i0 list.discI) 
-apply (smt (verit) i0 list.discI) 
- done
+apply (smt (verit) i0 list.discI)  apply (smt (verit) i0 list.discI)   done
 
   show goal339: "HSTATE InvalidM T \<and> nextReqIs RdOwn T 0 \<longrightarrow> CSTATE IMAD T 0"
      apply  (cases "reqs1 T") apply  (auto)
 by (smt (verit) i0 list.discI) 
   show goal340: "HSTATE InvalidM T \<and> nextReqIs RdOwn T 1 \<longrightarrow> CSTATE IMAD T 1"
      apply  (cases "reqs1 T") apply  (auto)
-apply (smt (verit) i1 startsWithProp.simps(1)) 
-apply (smt (verit) i0 list.discI) 
- done
+apply (smt (verit) i1 startsWithProp.simps(1))  apply (smt (verit) i0 list.discI)   done
 
   show goal341: "HSTATE InvalidM T \<and> nextReqIs RdOwn T 0 \<longrightarrow> dthdatas2 T = []"
     apply  (insert assms)(**)apply (smt (verit) i9) done
@@ -927,9 +899,7 @@ by (smt (verit) i0 list.discI)
 by (smt (verit) i9) 
   show goal382: "nextReqIs DirtyEvict T 1 \<and> HSTATE InvalidM T \<longrightarrow> \<not> nextDTHDataFrom 0 T"
      apply  (cases "reqs1 T") apply  (auto)
-apply (smt (verit) i8) 
-apply (smt (verit) i8) 
- done
+apply (smt (verit) i8)  apply (smt (verit) i8)   done
 
   show goal383: "nextReqIs DirtyEvict T 0 \<and> HSTATE InvalidM T \<longrightarrow> \<not> CSTATE ISDI T 1"
     apply  (insert assms)(**)apply (smt (verit) CSTATE_different2 MESI_State.distinct(145) i13) done
@@ -961,17 +931,13 @@ apply (smt (verit) i8)
     apply  (insert assms)(**)apply (smt (verit) CSTATE_different2 MESI_State.distinct(171) i13) done
   show goal397: "nextReqIs CleanEvictNoData T 0 \<or> nextReqIs CleanEvict T 0 \<longrightarrow> CSTATE SIA T 0 \<or> CSTATE IIA T 0 \<or> CSTATE SIAC T 0"
      apply  (cases "reqs1 T") apply  (auto)
-apply (smt (verit) i0 list.discI) 
-apply (smt (verit) i0 list.discI) 
- done
+apply (smt (verit) i0 list.discI)  apply (smt (verit) i0 list.discI)   done
 
   show goal398: "nextReqIs CleanEvictNoData T 1 \<or> nextReqIs CleanEvict T 1 \<longrightarrow> CSTATE SIA T 1 \<or> CSTATE IIA T 1 \<or> CSTATE SIAC T 1"
      apply  (cases "reqs1 T") apply  (auto)
 apply (smt (verit) i1 startsWithProp.simps(1)) 
 apply (smt (verit) i1 startsWithProp.simps(1)) 
-apply (smt (verit) i0 list.discI) 
-apply (smt (verit) i0 list.discI) 
- done
+apply (smt (verit) i0 list.discI)  apply (smt (verit) i0 list.discI)   done
 
   show goal399: "CSTATE Shared T 0 \<or> CSTATE Shared T 1 \<longrightarrow> \<not> HSTATE MD T"
     apply  (insert assms)(**)apply (smt (verit) CSTATE_different1 CSTATE_different2 MESI_State.distinct(95) i12 i13) done
@@ -981,17 +947,13 @@ apply (smt (verit) i0 list.discI)
     apply  (insert assms)(**)apply (smt (verit) CSTATE_different2 MESI_State.distinct(95) i13) done
   show goal402: "nextReqIs CleanEvictNoData T 0 \<or> nextReqIs CleanEvict T 0 \<longrightarrow> nextEvict T 0"
      apply  (cases "reqs1 T") apply  (auto)
-apply (smt (verit) i0 list.discI) 
-apply (smt (verit) i0 list.discI) 
- done
+apply (smt (verit) i0 list.discI)  apply (smt (verit) i0 list.discI)   done
 
   show goal403: "nextReqIs CleanEvictNoData T 1 \<or> nextReqIs CleanEvict T 1 \<longrightarrow> nextEvict T 1"
      apply  (cases "reqs1 T") apply  (auto)
 apply (smt (verit) i1 startsWithProp.simps(1)) 
 apply (smt (verit) i1 startsWithProp.simps(1)) 
-apply (smt (verit) i0 list.discI) 
-apply (smt (verit) i0 list.discI) 
- done
+apply (smt (verit) i0 list.discI)  apply (smt (verit) i0 list.discI)   done
 
   show goal404: "nextReqIs CleanEvictNoData T 0 \<or> nextReqIs CleanEvict T 0 \<longrightarrow> \<not> CSTATE ISDI T 0"
     apply  (insert assms)(**)apply (smt (verit) CSTATE_different1 MESI_State.distinct(145) i12) done
@@ -1013,9 +975,7 @@ apply (smt (verit) i0 list.discI)
      apply  (cases "reqs1 T") apply  (auto)
 apply (smt (verit) i4 nextReqRespIs.simps(1)) 
 apply (smt (verit) i5 nextReqRespIs.simps(1)) 
-apply (smt (verit) i0 list.discI) 
-apply (smt (verit) i0 list.discI) 
- done
+apply (smt (verit) i0 list.discI)  apply (smt (verit) i0 list.discI)   done
 
   show goal413: "CSTATE MIA T 0 \<longrightarrow> \<not> CSTATE IMA T 1 \<and> \<not> CSTATE SMA T 1 \<and> \<not> nextHTDDataPending T 1"
     apply  (insert assms)(**)apply (smt (verit) CSTATE_different1 Invalid_not_eq_MIA i12) done
@@ -1023,15 +983,11 @@ apply (smt (verit) i0 list.discI)
     apply  (insert assms)(**)apply (smt (verit) CSTATE_different2 Invalid_not_eq_MIA i13) done
   show goal415: "nextGOPendingIs GO_WritePull T 0 \<longrightarrow> \<not> nextGOPendingIs GO_WritePull T 1"
      apply  (cases "reqs1 T") apply  (auto)
-apply (smt (verit) i4 nextReqRespIs.simps(1)) 
-apply (smt (verit) i0 list.discI) 
- done
+apply (smt (verit) i4 nextReqRespIs.simps(1))  apply (smt (verit) i0 list.discI)   done
 
   show goal416: "nextGOPendingIs GO_WritePull T 1 \<longrightarrow> \<not> nextGOPendingIs GO_WritePull T 0"
      apply  (cases "reqs1 T") apply  (auto)
-apply (smt (verit) i4 nextReqRespIs.simps(1)) 
-apply (smt (verit) i0 list.discI) 
- done
+apply (smt (verit) i4 nextReqRespIs.simps(1))  apply (smt (verit) i0 list.discI)   done
 
   show goal417: "CSTATE IMA T 0 \<or> CSTATE SMA T 0 \<or> (CSTATE IMAD T 0 \<or> CSTATE SMAD T 0) \<and> nextHTDDataPending T 0 \<longrightarrow> HSTATE MA T \<or> HSTATE ModifiedM T \<or> HSTATE MB T \<or> HSTATE MAD T \<or> HSTATE SAD T"
     apply  (insert assms)(**)apply (metis CSTATE_inequality_invariant MESI_State.distinct(147) MESI_State.distinct(149) MESI_State.distinct(167) MESI_State.distinct(169) i12) done
@@ -1061,9 +1017,7 @@ apply (smt (verit) i0 list.discI)
 apply (smt (verit) i0 list.discI) 
 apply (smt (verit) HOST_State.distinct(75) HSTATE_def i14) 
 apply (smt (verit) HOST_State.distinct(75) HSTATE_def i14) 
-apply (smt (verit) HOST_State.distinct(5) HSTATE_def i14) 
-apply (smt (verit) HOST_State.distinct(5) HSTATE_def i14) 
- done
+apply (smt (verit) HOST_State.distinct(5) HSTATE_def i14)  apply (smt (verit) HOST_State.distinct(5) HSTATE_def i14)   done
 
   show goal426: "CSTATE SIA T 0 \<and> nextGOPendingIs GO_WritePullDrop T 0 \<and> CSTATE IIA T 1 \<longrightarrow> HSTATE InvalidM T \<or> HSTATE IB T"
     apply  (insert assms)(**)apply (smt (verit) i14) done
@@ -1073,15 +1027,11 @@ apply (smt (verit) HOST_State.distinct(5) HSTATE_def i14)
     apply  (insert assms)(**)apply (smt (verit) i8 i9) done
   show goal429: "CSTATE Invalid T 0 \<longrightarrow> \<not> nextSnoopIs SnpInv T 0"
      apply  (cases "reqs1 T") apply  (auto)
-apply (smt (verit) i2 startsSnp.simps(1)) 
-apply (smt (verit) i0 list.discI) 
- done
+apply (smt (verit) i2 startsSnp.simps(1))  apply (smt (verit) i0 list.discI)   done
 
   show goal430: "CSTATE Invalid T 1 \<longrightarrow> \<not> nextSnoopIs SnpInv T 1"
      apply  (cases "reqs1 T") apply  (auto)
-apply (smt (verit) i3 startsSnp.simps(1)) 
-apply (smt (verit) i0 list.discI) 
- done
+apply (smt (verit) i3 startsSnp.simps(1))  apply (smt (verit) i0 list.discI)   done
 
   show goal431: "CSTATE Modified T 0 \<longrightarrow> \<not> CSTATE MIA T 1"
     apply  (insert assms)(**)apply (smt (verit) CSTATE_different2 Invalid_not_eq_MIA i13) done
@@ -1245,15 +1195,11 @@ apply (smt (verit) i0 list.discI)
     apply  (insert assms)(**)apply (smt (verit) CSTATE_different2 MESI_State.distinct(141) MESI_State.distinct(149) MESI_State.distinct(169) i13) done
   show goal511: "HSTATE InvalidM T \<longrightarrow> \<not> nextHTDDataPending T 0"
      apply  (cases "reqs1 T") apply  (auto)
-apply (smt (verit) i10) 
-apply (smt (verit) i10) 
- done
+apply (smt (verit) i10)  apply (smt (verit) i10)   done
 
   show goal512: "HSTATE InvalidM T \<longrightarrow> \<not> nextHTDDataPending T 1"
      apply  (cases "reqs1 T") apply  (auto)
-apply (smt (verit) i11) 
-apply (smt (verit) i11) 
- done
+apply (smt (verit) i11)  apply (smt (verit) i11)   done
 
   show goal513: "HSTATE InvalidM T \<longrightarrow> \<not> CSTATE Shared T 0"
     apply  (insert assms)(**)apply (smt (verit) CSTATE_different1 MESI_State.distinct(95) i12) done
@@ -1642,9 +1588,7 @@ apply (smt (verit) i11)
 by (smt (verit) i0 list.discI) 
   show goal705: "HSTATE InvalidM T \<and> nextReqIs DirtyEvict T 1 \<longrightarrow> CSTATE IIA T 1"
      apply  (cases "reqs1 T") apply  (auto)
-apply (smt (verit) i1 startsWithProp.simps(1)) 
-apply (smt (verit) i0 list.discI) 
- done
+apply (smt (verit) i1 startsWithProp.simps(1))  apply (smt (verit) i0 list.discI)   done
 
   show goal706: "HSTATE InvalidM T \<longrightarrow> (\<not> CSTATE SIA T 0 \<or> nextGOPendingIs GO_WritePullDrop T 0) \<and> (\<not> CSTATE SIA T 1 \<or> nextGOPendingIs GO_WritePullDrop T 1)"
     apply  (insert assms)(**)apply (smt (verit) CSTATE_different1 CSTATE_different2 MESI_State.distinct(175) i12 i13) done
@@ -1783,15 +1727,11 @@ apply (smt (verit) i0 list.discI)
 by (smt (verit) i0 list.discI) 
   show goal773: "nextReqIs CleanEvictNoData T 1 \<longrightarrow> CSTATE SIAC T 1"
      apply  (cases "reqs1 T") apply  (auto)
-apply (smt (verit) i1 startsWithProp.simps(1)) 
-apply (smt (verit) i0 list.discI) 
- done
+apply (smt (verit) i1 startsWithProp.simps(1))  apply (smt (verit) i0 list.discI)   done
 
   show goal774: "nextSnpRespIs RspIHitSE T 0 \<longrightarrow> \<not> nextDTHDataFrom 0 T"
      apply  (cases "reqs1 T") apply  (auto)
-apply (smt (verit) i8) 
-apply (smt (verit) i8) 
- done
+apply (smt (verit) i8)  apply (smt (verit) i8)   done
 
   show goal775: "nextSnpRespIs RspIHitSE T 1 \<longrightarrow> \<not> nextDTHDataFrom 1 T"
     apply  (insert assms)(**)apply (smt (verit) i7 nextSnpRespIs_invariant2) done
@@ -1800,9 +1740,7 @@ apply (smt (verit) i8)
 by (smt (verit) i0 list.discI) 
   show goal777: "nextSnpRespIs RspIFwdM T 1 \<longrightarrow> \<not> nextReqIs CleanEvictNoData T 1"
      apply  (cases "reqs1 T") apply  (auto)
-apply (smt (verit) i7 startsWithProp.simps(1)) 
-apply (smt (verit) i0 list.discI) 
- done
+apply (smt (verit) i7 startsWithProp.simps(1))  apply (smt (verit) i0 list.discI)   done
 
   show goal778: "CSTATE SMA T 0 \<and> nextSnoopIs SnpData T 0 \<and> nextGOPending T 0 \<longrightarrow> HSTATE SAD T"
     apply  (insert assms)(**)apply (smt (verit) CSTATE_different1 MESI_State.distinct(169) i12) done

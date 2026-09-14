@@ -211,7 +211,7 @@ Also possible ModifiedInvalidEvict, as the old owner being invalidated means som
 Current owner downgraded first, then previous owner trying to downgrade.\<close>
 definition "HostShared_DirtyEvict' T i = (if HSTATE SharedM T \<and> nextReqIs DirtyEvict T i  \<and>  GTS T ((i + 1) mod 2) \<and> CSTATE IIA T i
   then [clearBuffer(sendEvictResp GO_WritePull i SB (nextReqID T i) T )] else [])"
-definition "HostModifiedDirtyEvict' T i = (if HSTATE ModifiedM T \<and> nextReqIs DirtyEvict T i  \<and> GTS T ((i + 1) mod 2) \<and> CSTATE MIA T i \<and> \<not> (CSTATE SIA T 1 \<and> nextGOPendingIs GO_WritePullDrop T 1)
+definition "HostModifiedDirtyEvict' T i = (if HSTATE ModifiedM T \<and> nextReqIs DirtyEvict T i  \<and> GTS T ((i + 1) mod 2) \<and> CSTATE MIA T i
   then [clearBuffer (sendEvictResp GO_WritePull i ID (nextReqID T i) T)] else [])"   
 definition "HostModifiedDirtyEvictPrevious' T i = (if HSTATE ModifiedM T \<and> nextReqIs DirtyEvict T i  \<and> GTS T ((i + 1) mod 2) \<and> CSTATE IIA T i \<and> CSTATE Modified T ((i + 1) mod 2)
   then [clearBuffer (sendEvictResp GO_WritePull i MB (nextReqID T i) T)] else [])"   

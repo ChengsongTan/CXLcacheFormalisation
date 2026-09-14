@@ -407,8 +407,8 @@ definition SWMR_state_machine :: "Type1State \<Rightarrow> bool" where [simp]:
     (C_msg_P_same SIA (nextGOPendingIs GO_WritePullDrop) nextEvict T) \<and> \<comment>\<open>True, indeed\<close>
     (C_msg_P_same SIA (nextGOPendingIs GO_WritePullDrop) (\<lambda>T i. \<not> nextReqIs RdShared T i) T) \<and> \<comment>\<open>True, indeed no new req should happen for SIA\<close>
     (C_msg_P_same SIA (nextGOPendingIs GO_WritePullDrop) (\<lambda> T i. \<not>nextSnoopPending T i) T) \<and> \<comment>\<open>True, indeed snoop cannot be sent as its downgrading to invalid already known by host\<close>
-    (CSTATE SIA T 0 \<and> nextGOPendingIs GO_WritePullDrop T 0 \<longrightarrow> HSTATE InvalidM T \<or> HSTATE SharedM T \<or> HSTATE SB T \<or> HSTATE IB T \<or> HSTATE ModifiedM T) \<and> \<comment>\<open>should be narrowed down later\<close>
-    (CSTATE SIA T 1 \<and> nextGOPendingIs GO_WritePullDrop T 1 \<longrightarrow> HSTATE InvalidM T \<or> HSTATE SharedM T \<or> HSTATE SB T \<or> HSTATE IB T \<or> HSTATE ModifiedM T) \<and> 
+    (CSTATE SIA T 0 \<and> nextGOPendingIs GO_WritePullDrop T 0 \<longrightarrow> HSTATE InvalidM T \<or> HSTATE SharedM T \<or> HSTATE SB T \<or> HSTATE IB T \<or> HSTATE ModifiedM T \<or> HSTATE ID T) \<and> \<comment>\<open>should be narrowed down later\<close>
+    (CSTATE SIA T 1 \<and> nextGOPendingIs GO_WritePullDrop T 1 \<longrightarrow> HSTATE InvalidM T \<or> HSTATE SharedM T \<or> HSTATE SB T \<or> HSTATE IB T \<or> HSTATE ModifiedM T \<or> HSTATE ID T) \<and> 
     (C_msg_P_same SIA (nextGOPendingIs GO_WritePullDrop) (\<lambda>T i. \<not> nextDTHDataPending T i) T) \<and> \<comment>\<open>True, not supposed send any data before GO_WP\<close>
     (CSTATE SMAD T 0 \<and> nextHTDDataPending T 0 \<longrightarrow>  HSTATE ModifiedM T \<or> HSTATE MA T \<or> HSTATE MAD T \<or> HSTATE SAD T) \<and>
     (CSTATE ISAD T 0 \<and> nextHTDDataPending T 0 \<longrightarrow>  HSTATE SharedM T \<or> HSTATE SA T \<or> HSTATE MA T \<or> HSTATE SB T) \<and> \<comment>\<open>SharedM--> GO inflight already SA--> GO not yet MA\<longrightarrow> other trying to get M\<close>
