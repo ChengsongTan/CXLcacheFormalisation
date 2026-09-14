@@ -1,5 +1,5 @@
 
-theory FixShared_CleanEvict_NotLastDrop imports BasicInvariants  begin
+theory FixShared_CleanEvict_NotLastDrop imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma snps2_HostShared_CleanEvict_NotLastDrop: shows "snps2 ( T [ 5 sHost= SharedM] [ 0 +=reqresp GO_WritePullDrop Invalid txid] [ 0 -=req ]) = snps2 T"
 apply(case_tac "program1 T")

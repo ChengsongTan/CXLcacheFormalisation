@@ -1,5 +1,5 @@
 
-theory FixSMAGO imports BasicInvariants  begin
+theory FixSMAGO imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma nextEvict_SMAGO_CSTATE_invariant: shows "CSTATE X T i = CSTATE X (T [ -=i 0])  i"
 apply simp

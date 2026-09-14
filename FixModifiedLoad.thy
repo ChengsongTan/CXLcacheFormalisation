@@ -1,5 +1,5 @@
 
-theory FixModifiedLoad imports BasicInvariants  begin
+theory FixModifiedLoad imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma ModifiedLoad'_coherent_aux_simpler: assumes "SWMR_state_machine T \<and> CSTATE Modified T 0 \<and> nextLoad T 0 " shows 
 "SWMR_state_machine (T [ -=i 0])"

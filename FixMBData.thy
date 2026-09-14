@@ -1,5 +1,5 @@
 
-theory FixMBData imports BasicInvariants  begin
+theory FixMBData imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma HostMBData'_devcache_invariant1: shows "(CLEntry.block_state (devcache1 ( T [ 5 sHost= ModifiedM] [ Dev1 -=d2hdHead ]))) = CLEntry.block_state (devcache1 T)"
 by simp

@@ -1,5 +1,5 @@
 
-theory FixInvalidStore imports BasicInvariants  begin
+theory FixInvalidStore imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma snps2_InvalidStore: shows "snps2 ( T [ 0 +=rdreq RdOwn] [ 0 s= IMAD]) = snps2 T"
 by simp

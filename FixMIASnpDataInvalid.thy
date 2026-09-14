@@ -1,5 +1,5 @@
 
-theory FixMIASnpDataInvalid imports BasicInvariants   begin
+theory FixMIASnpDataInvalid imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma reqresps1_MIASnpDataInvalid: shows "reqresps1 T = [] \<Longrightarrow> length (reqresps1 
 (T \<lparr>buffer1 := Some m\<rparr> [0 +=snpresp RspIFwdM txid] [0 -=snp ] [ 0 s= IIA] [ Dev1 +=d2hd dthd])) \<le> 1"

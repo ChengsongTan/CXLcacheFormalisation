@@ -1,5 +1,5 @@
 
-theory FixIMAGO imports BasicInvariants  begin
+theory FixIMAGO imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma nextEvict_IMAGO_CSTATE_invariant: shows "CSTATE X T i = CSTATE X (T [ -=i 0])  i"
 apply simp

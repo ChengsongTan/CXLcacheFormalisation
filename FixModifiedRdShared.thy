@@ -1,5 +1,5 @@
 
-theory FixModifiedRdShared imports BasicInvariants  begin
+theory FixModifiedRdShared imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma nextGOPending_HostModifiedRdShared: "nextGOPending (  T [ 1 +=snp SnpData txid]  [ 5 sHost= SAD] [ 0 -=req ] ) i = nextGOPending T i"
 apply(case_tac i)

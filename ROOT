@@ -5,6 +5,9 @@ session "AllFixes" = HOL +
     CoherenceProperties
     BuggyRules
     BasicInvariants
+    InitialState
+    Toggle
+    RuleSymmetry
     FixIBData
     FixIDData
     FixIIAGO_WritePull
@@ -62,6 +65,7 @@ session "AllFixes" = HOL +
     FixSMDData
     FixSharedDirtyEvict
     FixSharedEvict
+    FixSharedEvictData
     FixSharedLoad
     FixSharedRdOwn
     FixSharedRdOwnSelf
@@ -73,4 +77,4 @@ session "AllFixes" = HOL +
     FixShared_CleanEvict_Last
     FixShared_CleanEvict_NotLastData
     FixShared_CleanEvict_NotLastDrop
-    FixSharedEvictData
+    TopLevelTheorem

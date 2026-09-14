@@ -1,5 +1,5 @@
 
-theory FixInvalidLoad imports BasicInvariants  begin
+theory FixInvalidLoad imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma snps2_InvalidLoad: shows "snps2 ( T [ 0 +=rdreq RdShared] [ 0 s= ISAD]) = snps2 T"
 by simp

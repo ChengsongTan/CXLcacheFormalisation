@@ -1,5 +1,5 @@
 
-theory FixMARspIHitSE imports BasicInvariants  begin
+theory FixMARspIHitSE imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false, max_proofs = 1]
 lemma HostMARspIHitSE'_CSTATE_invariant1: shows "CSTATE X ( T [ 1 +=reqresp GO Modified txid] [ 5 sHost= ModifiedM] [ 0 -=snpresp  ]) 0 = CSTATE X T 0"
 by simp
@@ -5046,10 +5046,13 @@ lemma MARspIHitSE_helper: "f T \<Longrightarrow>
    else [])
   f"
 by simp
+lemma not_nextHTDDataPending_0: "(\<not> nextHTDDataPending T 0) = (htddatas1 T = [])"
+  by simp
+
 lemma HostMARspIHitSE_coherent: shows "
 SWMR_state_machine T \<Longrightarrow> Lall (HostMARspIHitSE' T 0) SWMR_state_machine
 "
-unfolding HostMARspIHitSE'_def
+unfolding HostMARspIHitSE'_def not_nextHTDDataPending_0
 unfolding sendGOFromSnpResp_def
 apply(insert HostMARspIHitSE'_coherent_aux_simpler)
 by (metis HostMARspIHitSE'_coherent_aux_simpler MARspIHitSE_helper Nat.add_0_right add.commute one_mod_two_eq_one plus_nat.add_0)

@@ -1,5 +1,5 @@
 
-theory FixSharedLoad imports BasicInvariants  begin
+theory FixSharedLoad imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma SharedLoad'_coherent_aux_simpler: assumes "SWMR_state_machine T \<and> CSTATE Shared T 0 \<and> nextLoad T 0 " shows 
 "SWMR_state_machine (T [ -=i 0])"

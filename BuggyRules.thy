@@ -292,9 +292,9 @@ definition "HostMARspIFwdM' T i = (if HSTATE MA T \<and> nextSnpRespIs RspIFwdM 
   then [clearBuffer (sendGOFromSnpResp  (nextSnoopRespID T i) i Modified GO ModifiedM T)  ] else [])"
 \<comment>\<open>TODO: need to add SAD --> SA where data is processed first
 \<close>
-(*htddats1 T = [] is really an SPG+no snoop sent between Data-GO (Data-GO atomicity) restriction, which is part of spec (3.2.5.2 paragraph 3) 
+(*\<not> nextHTDDataPending T i (no H2D data in flight at the responding device) is really an SPG+no snoop sent between Data-GO (Data-GO atomicity) restriction, which is part of spec (3.2.5.2 paragraph 3) 
 future work: some simpler phrasing of these restrictions: e.g. double-GO not allowed*)
-definition "HostMARspIHitSE' T i = (if HSTATE MA T \<and> nextSnpRespIs RspIHitSE T i \<and> GTS T i \<and> htddatas1 T  = []
+definition "HostMARspIHitSE' T i = (if HSTATE MA T \<and> nextSnpRespIs RspIHitSE T i \<and> GTS T i \<and> \<not> nextHTDDataPending T i
   then [clearBuffer (sendGOFromSnpResp  (nextSnoopRespID T i) i Modified GO ModifiedM T)  ] else [])"
 
 

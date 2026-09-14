@@ -1,5 +1,5 @@
 
-theory FixSharedEvict imports BasicInvariants  begin
+theory FixSharedEvict imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma snps2_SharedEvict: shows "snps2 ( T [ 0 +=rdreq CleanEvictNoData] [ 0 s= SIA]) = snps2 T"
 by simp

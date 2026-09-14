@@ -1,5 +1,5 @@
 
-theory FixISDSnpInv imports BasicInvariants  begin
+theory FixISDSnpInv imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma ISDSnpInv_ModifiedM_aux2: shows " reqs1 T = reqs1 ( T\<lparr>buffer1 := x\<rparr> [i +=snpresp y z] [i -=snp ] [ i s= mesi])"
 apply(case_tac i)

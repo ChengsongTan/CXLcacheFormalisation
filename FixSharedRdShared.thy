@@ -1,5 +1,5 @@
 
-theory FixSharedRdShared imports BasicInvariants  begin
+theory FixSharedRdShared imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma HostSharedRdShared_nextLoad: shows "nextLoad T 1 = nextLoad (  T [ 0 +=hostdata  txid] [ 5 sHost= SharedM] [ 0 +=reqresp GO Shared txid] [ 0 -=req ]) 1"
 by simp

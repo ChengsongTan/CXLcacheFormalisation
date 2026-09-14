@@ -1,5 +1,5 @@
 
-theory FixMADData imports BasicInvariants  begin
+theory FixMADData imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma nextHTDDataPending_real_MADData: shows "nextHTDDataPending T 0 = nextHTDDataPending ( T [ Dev2 +=h2dd hmsg] [ =hv v] [ 5 sHost= MA] [ Dev1 -=d2hdHead ]) 0"
 by simp

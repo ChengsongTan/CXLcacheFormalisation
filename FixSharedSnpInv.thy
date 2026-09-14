@@ -1,5 +1,5 @@
 
-theory FixSharedSnpInv imports BasicInvariants  begin
+theory FixSharedSnpInv imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma SharedSnpInv_ModifiedM_aux2: shows " reqs1 T = reqs1 ( T\<lparr>buffer1 := Some m\<rparr> [0 +=snpresp RspIHitSE tid] [0 -=snp ] [ 0 s= Invalid])"
 by simp

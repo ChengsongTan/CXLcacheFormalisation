@@ -1,5 +1,5 @@
 
-theory FixIMDData imports BasicInvariants  begin
+theory FixIMDData imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma devcache2_sequals1_invariant: shows "devcache2 ( T [ 0 s= X] ) = devcache2 T"
 by simp

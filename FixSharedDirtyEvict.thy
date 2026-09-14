@@ -1,5 +1,5 @@
 
-theory FixSharedDirtyEvict imports BasicInvariants  begin
+theory FixSharedDirtyEvict imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma snps2_HostShared_DirtyEvict: shows "snps2 ( T [ 5 sHost= SB] [ 0 +=reqresp GO_WritePull Invalid txid] [ 0 -=req ]) = snps2 T"
 apply(case_tac "program1 T")

@@ -1,5 +1,5 @@
 
-theory FixModifiedStore imports BasicInvariants  begin
+theory FixModifiedStore imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma ModifiedStore'_coherent_aux_simpler: assumes "SWMR_state_machine T \<and> CSTATE Modified T 0 \<and> nextStore T 0 " shows 
 "SWMR_state_machine (T [ -=i 0])"

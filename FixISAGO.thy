@@ -1,5 +1,5 @@
 
-theory FixISAGO imports BasicInvariants  begin
+theory FixISAGO imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma nextStore_ISAGO_invariant: shows"nextStore T 0 = nextStore ( T \<lparr>buffer1 := Some m\<rparr> [ 0 s= Shared] [ 0 -=reqresp ] ) 0"
 by simp

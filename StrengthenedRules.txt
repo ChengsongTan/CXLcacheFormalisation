@@ -53,14 +53,12 @@ Rules that have simplifying tracking assumptions:
 7. **HostModifiedDirtyEvict'**
 
    ```isabelle
-   definition "HostModifiedDirtyEvict' T i = (if HSTATE ModifiedM T ∧ nextReqIs DirtyEvict T i  ∧ GTS T ((i + 1) mod 2) ∧ CSTATE MIA T i ∧ ¬ (CSTATE SIA T ((i + 1) mod 2) ∧ nextGOPendingIs GO_WritePullDrop T ((i + 1) mod 2))
+   definition "HostModifiedDirtyEvict' T i = (if HSTATE ModifiedM T ∧ nextReqIs DirtyEvict T i  ∧ GTS T ((i + 1) mod 2) ∧ CSTATE MIA T i
      then [clearBuffer (sendEvictResp GO_WritePull i ID (nextReqID T i) T)] else [])"
    ```
 
-   *Strengthening:* Involves `CSTATE MIA T i` and a condition on another device's state `¬ (CSTATE SIA T ((i + 1) mod 2) ∧ nextGOPendingIs GO_WritePullDrop T ((i + 1) mod 2))`.
-yes, added that the other side must have processed GWPD--no way to get an ACK, but if this side is already modified and trying to downgrade via DE, then
-must be GWPD have stayed in channel since owner has got ownership, and then DE being processed. This forces the other side device to process gwpd immediately
-*Ideal*: allowed to inspect state of issuing device to make sure it is indeed downgrading
+   *Ideal:* Involves `CSTATE MIA T i`, which inspects the state of the issuing device to make sure it is indeed downgrading.
+   An earlier version also required `¬ (CSTATE SIA T ((i + 1) mod 2) ∧ nextGOPendingIs GO_WritePullDrop T ((i + 1) mod 2))`; this condition has been removed.
 
 
 ******************** -2 rules from now ***********************

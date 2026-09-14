@@ -1,5 +1,5 @@
 
-theory FixSARspSFwdM imports BasicInvariants  begin
+theory FixSARspSFwdM imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma HostSARspSFwdM'_devcache_invariant1: shows "(CLEntry.block_state (devcache1 (  T [ 1 +=reqresp GO Shared txid] [ 5 sHost= SharedM] [ 0 -=snpresp  ]))) = CLEntry.block_state (devcache1 T)"
 by simp

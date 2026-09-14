@@ -1,5 +1,5 @@
 
-theory FixInvalidRdOwn imports BasicInvariants  begin
+theory FixInvalidRdOwn imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma HostInvalidRdOwn_nextLoad: shows "nextLoad T 1 = nextLoad (  T [ 0 +=hostdata  txid] [ 5 sHost= ModifiedM] [ 0 +=reqresp GO Modified txid] [ 0 -=req ]) 1"
 by simp

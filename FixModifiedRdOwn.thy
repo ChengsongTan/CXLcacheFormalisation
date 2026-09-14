@@ -1,5 +1,5 @@
 
-theory FixModifiedRdOwn imports BasicInvariants  begin
+theory FixModifiedRdOwn imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 
 

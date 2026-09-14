@@ -1,5 +1,5 @@
 
-theory FixSIAGO_WritePullDrop imports BasicInvariants  begin
+theory FixSIAGO_WritePullDrop imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma nextEvict_SIAGO_WritePullDrop_invariant: shows"nextEvict T 0 = nextEvict ( T \<lparr>buffer1 := Some m\<rparr> [ 0 s= Invalid] [ 0 -=reqresp ] ) 0"
 by simp

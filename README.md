@@ -30,25 +30,32 @@ The coherence property that is shown to be an inductive invariant of the system 
 
 The `BasicInvariants.thy` file contains some basic invariants related to certain transitions and functions we already defined in `BuggyRules.thy` and `Transposed.thy`.
 
-The proofs are in the rest of the `.thy` files in this artifact. Each transition rule is proven to maintain the inductive property (`SWMR_state_machine`). Since `SWMR_state_machine` is quite large (consisting of around 800 conjuncts), the proof of just a single rule is lengthy, each spanning more than 1,000 lines. They are therefore each stored in a dedicated file, where the filename corresponds to the name of the rule (up to a prefix).
+The proofs are in the rest of the `.thy` files in this artifact. Each transition rule is proven to maintain the inductive property (`SWMR_state_machine`). Since `SWMR_state_machine` is quite large (consisting of 796 conjuncts), the proof of just a single rule is lengthy, each spanning more than 1,000 lines. They are therefore each stored in a dedicated file, where the filename corresponds to the name of the rule (up to a prefix).
 
-As an example, the `FixSIAGO_WritePull.thy` file contains the proof that the `SIAGO_WritePull` rule maintains the `SWMR_state_machine` property. The main lemma stating this fact is at the end of the file (line 2915 with name `SIAGO_WritePull_coherent`).
+As an example, the `FixSIAGO_WritePull.thy` file contains the proof that the `SIAGO_WritePull` rule maintains the `SWMR_state_machine` property. The main lemma stating this fact is at the end of the file (line 3569 with name `SIAGO_WritePull_coherent`).
 
-The most important auxiliary lemma leading to this is `SIAGO_WritePull’_coherent_aux_simpler` (line 233). This auxiliary lemma breaks down the proof into hundreds of subgoals. We call lemmas like this “rule lemmas” as they each correspond to a rule.
+The most important auxiliary lemma leading to this is `SIAGO_WritePull'_coherent_aux_simpler` (line 149). This auxiliary lemma breaks down the proof into hundreds of subgoals. We call lemmas like this “rule lemmas” as they each correspond to a rule.
 
-The top-level theorem stating the Single-Writer-Multiple-Reader property of the transition system is the corollary `SWMR_pplus_cache` in `TopLevelTheorem.thy` (line 354), corresponding to Theorem 6.2 in the paper. Some main theorems lead to this corollary:
-- If `initial_state(𝑇)` then `SWMR_state_machine(𝑇)` (Theorem `SWMR_state_machine_CXL_cache` at line 321).  
-- If `𝑇 −→ 𝑇’` and `SWMR_state_machine(𝑇)` then `SWMR_state_machine(𝑇’)` (Theorem `all_transitions_coherent` at line 103).  
+The top-level theorem stating the Single-Writer-Multiple-Reader property of the transition system is the corollary `SWMR_pplus_cache` in `TopLevelTheorem.thy` (line 376), corresponding to Theorem 6.2 in the paper. Some main theorems lead to this corollary:
+- If `initial_state(𝑇)` then `SWMR_state_machine(𝑇)` (Theorem `initial_valid` in `InitialState.thy`, line 73).  
+- If `𝑇 −→ 𝑇’` and `SWMR_state_machine(𝑇)` then `SWMR_state_machine(𝑇’)` (Theorem `all_transitions_coherent_both` at line 337, which combines `all_transitions_coherent` for device index 0 at line 103 and `all_transitions_coherent_dev2` for device index 1 at line 321).  
 
-These two theorems correspond to the first two of the three properties described in the paper just before Theorem 6.
+These two theorems correspond to the first two of the three properties described in the paper just before Theorem 6. Theorem `SWMR_state_machine_CXL_cache` (line 348) combines them: every state reachable from an initial state satisfies `SWMR_state_machine`.
+
+### Changes since the ASPLOS 2025 version of the artifact
+
+* **Model.** Two host rules in `BuggyRules.thy` changed. The conjunct `\<not> (CSTATE SIA T 1 \<and> nextGOPendingIs GO_WritePullDrop T 1)` was removed from the guard of `HostModifiedDirtyEvict'`; it used the fixed device index 1 in both instances of the rule. The guard of `HostMARspIHitSE'` is now `\<not> nextHTDDataPending T i` instead of `htddatas1 T = []`, which tested the H2D data channel of device index 0 in both instances of the rule.
+* **Invariant.** Two conjuncts of `SWMR_state_machine` in `CoherenceProperties.thy` were weakened: a device in state `SIA` with a `GO_WritePullDrop` pending may now also coexist with host state `ID`. The rule lemmas (`Fix*.thy`) and `InitialState.thy` were updated accordingly.
+* **Both device indices.** The rule lemmas are stated for device index 0. `Toggle.thy` proves that the invariant is symmetric under swapping the two devices (`symmetry`), and `RuleSymmetry.thy` proves that every rule commutes with the swap (`allTransitions'_toggle`). `TopLevelTheorem.thy` combines these into `all_transitions_coherent_both` (line 337), which covers transitions of either device, and `allTransStar` (line 344) is now the reflexive-transitive closure of one-step transitions of either device. The earlier version of `allTransStar` only related a state to its immediate successors under device-0 transitions.
+* **Session.** `AllFixes` (see `ROOT`) now also contains `InitialState`, `Toggle`, `RuleSymmetry` and `TopLevelTheorem`, so `isabelle build -v -d . AllFixes` checks every theory on which the top-level theorems depend. `Litmus.thy` (scenario tests) and `Super2023.thy` (proof automation) are not part of the session. The artifact was checked with Isabelle2024.
 
 ### A.3.1 How to access
 The artifact is available on GitHub:  
 <https://github.com/ChengsongTan/CXLcacheFormalisation>
 
 ### A.3.2 Software dependencies
-The artifact depends on Isabelle2023, available at:  
-<https://isabelle.in.tum.de/website-Isabelle2023/index.html>
+The artifact depends on Isabelle2024, available at:  
+<https://isabelle.in.tum.de/website-Isabelle2024/index.html>
 
 ---
 
@@ -59,13 +66,13 @@ The artifact depends on Isabelle2023, available at:
 
 ### Preparing suitable running environment
 #### For Windows:
-Download Isabelle2023 (see above URL). Double-click the downloaded installer to complete the installation process; it is suggested to put Isabelle2023 in some easy-to-access folder such as the desktop so it is easy to navigate there (needed later).
-##### Potential issues with downloading and installing Isabelle2023 on Windows
+Download Isabelle2024 (see above URL). Double-click the downloaded installer to complete the installation process; it is suggested to put Isabelle2024 in some easy-to-access folder such as the desktop so it is easy to navigate there (needed later).
+##### Potential issues with downloading and installing Isabelle2024 on Windows
 Tested on Windows Server 2022 (Desktop Experience)
 
-(a) If you use Edge and you're not given permission to open the file (e.g. Edge says `Isabelle2023.exe isn't commonly downloaded ...`), do the following:
+(a) If you use Edge and you're not given permission to open the file (e.g. Edge says `Isabelle2024.exe isn't commonly downloaded ...`), do the following:
 
-Click three dots (more actions) > Keep > Show more > Keep anyway. Confirm that we can now execute Isabelle2023.exe.
+Click three dots (more actions) > Keep > Show more > Keep anyway. Confirm that we can now execute Isabelle2024.exe.
 
 (b) If Isabelle shows `IO error … (access is denied)`, ignore it & just close Isabelle.
 
@@ -74,18 +81,18 @@ Clone or download the artifact from GitHub (see above URL). If you downloaded a 
 #### For Linux: 
 Download using this address:
 ```
-https://isabelle.in.tum.de/website-Isabelle2023/dist/Isabelle2023_linux.tar.gz
+https://isabelle.in.tum.de/website-Isabelle2024/dist/Isabelle2024_linux.tar.gz
 ```
 
 Then run the command from the command line in the folder where the downloaded file is stored:
 ```
-tar -xzf Isabelle2023_linux.tar.gz
+tar -xzf Isabelle2024_linux.tar.gz
 ```
 
 
 To be able to execute the `isabelle` command in the artifact folder, run these commands to add the path to your Isabelle bin directory to your PATH variable:
 ```
-echo 'export PATH=$PATH:/home/ubuntu/Downloads/Isabelle2023/bin' >> ~/.bashrc
+echo 'export PATH=$PATH:/home/ubuntu/Downloads/Isabelle2024/bin' >> ~/.bashrc
 ```
 
 
@@ -144,17 +151,17 @@ isabelle getenv ISABELLE_HOME_USER
 ```
 This will output the path of a directory, e.g.,  
 ```
-/home/ubuntu/.isabelle/Isabelle2023
+/home/ubuntu/.isabelle/Isabelle2024
 ```
 
 #### For Windows
-In the Windows explorer, go to the folder where Isabelle2023
+In the Windows explorer, go to the folder where Isabelle2024
 is installed and double-click the "Cygwin-Terminal.bat" file
 to open a Cygwin terminal (a minimal installation of Cygwin
 ships with Isabelle).
 In the Cygwin terminal, run `isabelle getenv ISABELLE_HOME_USER`. This will lead to the path of a directory being output, e.g.
 ```
-/cygdrive/c/Users/Joe/.isabelle/Isabelle2023
+/cygdrive/c/Users/Joe/.isabelle/Isabelle2024
 ```
 Navigate to the directory. If you use Windows Explorer and the path is `cygdrive/c/...`, this means `c/...` "
 
@@ -187,6 +194,8 @@ Increasing the Java heap size limit can potentially alleviate this issue:
 isabelle jedit -l AllFixes -J -Xmx8192m
 ```
 
+By default Isabelle uses a 32-bit-pointer ML system on all platforms, which limits the ML heap to 16GB. If the build runs out of memory, put the line `ML_system_64 = true` into `$ISABELLE_HOME_USER/etc/preferences` and, for example, `ML_OPTIONS="--minheap 2000 --maxheap 40000"` into `$ISABELLE_HOME_USER/etc/settings` (this is the configuration the session was last built with on a 64GB machine).
+
 ### GUI building process
 Once you have entered this command, the Isabelle IDE will open, with messages starting:
 ```
@@ -206,6 +215,7 @@ You should find that every theorem has gone through without error, and that no o
 
 In particular, see:
 - `all_transitions_coherent` (line 103),  
-- `SWMR_state_machine_CXL_cache` (line 321),  
-- `SWMR_CXL_cache` (line 336),  
-- `SWMR_pplus_cache` (line 354).
+- `all_transitions_coherent_both` (line 337),  
+- `SWMR_state_machine_CXL_cache` (line 348),  
+- `SWMR_CXL_cache` (line 358),  
+- `SWMR_pplus_cache` (line 376).

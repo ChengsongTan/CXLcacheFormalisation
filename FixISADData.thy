@@ -1,5 +1,5 @@
 
-theory FixISADData imports BasicInvariants  begin
+theory FixISADData imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma nextSnoopPending_ISADData1: shows "nextSnoopPending ( T [ 0 s= ISA] [ 0 :=dd getHTDDataOrMakeup T 0] [ 0 -=devd ]) 1 = nextSnoopPending T 1"
 using DeviceID.simps(3) Type1State.iffs Type1State.surjective Type1State.update_convs(2) change_state_def config_differ_dev_mapping_def device_copy_in_data_def nextSnoopPending_def nextSnoopPending_devConsume_data_invariant

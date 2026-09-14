@@ -1,5 +1,5 @@
 
-theory FixMIASnpDataShared imports BasicInvariants   begin
+theory FixMIASnpDataShared imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma reqresps1_MIASnpDataShared: shows "reqresps1 T = [] \<Longrightarrow> length (reqresps1 
 (T \<lparr>buffer1 := Some m\<rparr> [0 +=snpresp RspSFwdM txid] [0 -=snp ] [ 0 s= SIA] [ Dev1 +=d2hd dthd])) \<le> 1"

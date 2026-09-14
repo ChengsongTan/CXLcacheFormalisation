@@ -1,5 +1,5 @@
 
-theory FixIIAGO_WritePull imports BasicInvariants  begin
+theory FixIIAGO_WritePull imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma snps2_IIAGO_WritePull: shows "snps2 ( T\<lparr>buffer1 := Some m\<rparr> [ 0 s= Invalid] [ 0 -=reqresp ] [ Dev1 +=d2hd dthd] [ -=i 0]) = snps2 T"
 apply(case_tac "program1 T")

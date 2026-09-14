@@ -1,5 +1,5 @@
 
-theory FixISADGO imports BasicInvariants  begin
+theory FixISADGO imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma devcache2_buffer1_invariant: shows "devcache2 ( T \<lparr>buffer1 := Some m\<rparr> ) = devcache2 T"
 by simp

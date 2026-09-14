@@ -1,5 +1,5 @@
 
-theory FixMADRspIFwdM imports BasicInvariants  begin
+theory FixMADRspIFwdM imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma HostMADRspIFwdM'_CSTATE_invariant1: shows "CSTATE X ( T [ 1 +=reqresp GO Modified txid] [ 5 sHost= MD] [ 0 -=snpresp  ]) 0 = CSTATE X T 0"
 by simp

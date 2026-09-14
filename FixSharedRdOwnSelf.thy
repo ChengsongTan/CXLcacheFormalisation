@@ -1,5 +1,5 @@
 
-theory FixSharedRdOwnSelf imports BasicInvariants   begin
+theory FixSharedRdOwnSelf imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 sledgehammer_params[timeout = 15]
 lemma reqresps1_HostSharedRdOwnSelf: shows "reqresps1 T = [] \<Longrightarrow> length (reqresps1 (T [ 0 +=hostdata  txid] [ 5 sHost= ModifiedM] [ 0 +=reqresp GO mesi txid] [ 0 -=req ])) \<le> 1"

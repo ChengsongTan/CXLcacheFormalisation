@@ -1,5 +1,5 @@
 
-theory FixSADData imports BasicInvariants  begin
+theory FixSADData imports BasicInvariants begin
 sledgehammer_params[timeout=10, dont_minimize, "try0" = false]
 lemma nextLoad_HostSADData: "nextLoad (  T [ Dev2 +=h2dd hmsg] [ =hv v] [ 5 sHost= SA] [ Dev1 -=d2hdHead ] ) i = nextLoad T i"
 apply(case_tac i) apply simp+ done
