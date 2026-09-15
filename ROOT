@@ -151,6 +151,7 @@ session "HitSE_Rules" in "HitSE/rules" = AllFixes +
     HitSE_InvalidDirtyEvict
     HitSE_MARspIHitSE
     HitSE_SIACGO
+    HitSE_ModifiedDirtyEvictPrevious
 
 session "HitSE_Top" in "HitSE/top" = HitSE_Rules +
   options [document = false]

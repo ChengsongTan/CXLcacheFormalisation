@@ -27,7 +27,7 @@ proof -
 qed
 
 text \<open>The rule list of the guard-free model is allTransitions' with HostMARspIHitSE' (index 66) replaced.\<close>
-lemma allTransitions'_length: "length allTransitions' = 68"
+lemma allTransitions'_length: "length allTransitions' = 69"
   unfolding allTransitions'_def by simp
 
 lemma allTransitions'_nth_HostMARspIHitSE: "allTransitions' ! 66 = HostMARspIHitSE'"

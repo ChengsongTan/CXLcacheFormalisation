@@ -209,7 +209,7 @@ We have to take care of when the DirtyEvict does not come from the current owner
 drops the Data (as Bogus = 1)
 Also possible ModifiedInvalidEvict, as the old owner being invalidated means some other device has go ownership.
 Current owner downgraded first, then previous owner trying to downgrade.\<close>
-definition "HostShared_DirtyEvict' T i = (if HSTATE SharedM T \<and> nextReqIs DirtyEvict T i  \<and>  GTS T ((i + 1) mod 2) \<and> CSTATE IIA T i
+definition "HostShared_DirtyEvict' T i = (if HSTATE SharedM T \<and> nextReqIs DirtyEvict T i  \<and>  GTS T ((i + 1) mod 2)
   then [clearBuffer(sendEvictResp GO_WritePull i SB (nextReqID T i) T )] else [])"
 definition "HostModifiedDirtyEvict' T i = (if HSTATE ModifiedM T \<and> nextReqIs DirtyEvict T i  \<and> GTS T ((i + 1) mod 2) \<and> CSTATE MIA T i
   then [clearBuffer (sendEvictResp GO_WritePull i ID (nextReqID T i) T)] else [])"   
@@ -798,7 +798,8 @@ HostSBData',
 HostMBData',
 HostInvalidDirtyEvict',
 HostMARspIHitSE',
-SIACGO'
+SIACGO',
+HostModifiedDirtyEvictPrevious'
 ]"
 
 

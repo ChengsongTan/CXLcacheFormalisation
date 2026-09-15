@@ -68,6 +68,7 @@ theory HitSE_Reach
     "HitSE_Rules.HitSE_InvalidDirtyEvict"
     "HitSE_Rules.HitSE_MARspIHitSE"
     "HitSE_Rules.HitSE_SIACGO"
+    "HitSE_Rules.HitSE_ModifiedDirtyEvictPrevious"
 begin
 
 text \<open>HitSE_inv holds initially and is preserved by every transition of either device from a state that
@@ -105,7 +106,7 @@ lemmas HitSE_rule_lemmas =
   HostSADData'_HitSE HostMDData'_HitSE HostIDData'_HitSE HostMADData'_HitSE
   HostSADRspIFwdM'_HitSE HostSADRspSFwdM'_HitSE HostMADRspIFwdM'_HitSE HostMARspIFwdM'_HitSE
   HostSARspIFwdM'_HitSE HostSARspSFwdM'_HitSE HostIBDataPrevious'_HitSE HostSBData'_HitSE
-  HostMBData'_HitSE HostInvalidDirtyEvict'_HitSE HostMARspIHitSE'_HitSE SIACGO'_HitSE
+  HostMBData'_HitSE HostInvalidDirtyEvict'_HitSE HostMARspIHitSE'_HitSE SIACGO'_HitSE HostModifiedDirtyEvictPrevious'_HitSE
 
 theorem HitSE_transitions:
   assumes "SWMR_state_machine T" "HitSE_inv T"
