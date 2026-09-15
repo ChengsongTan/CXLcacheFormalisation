@@ -157,3 +157,4 @@ session "HitSE_Top" in "HitSE/top" = HitSE_Rules +
   theories
     HitSE_Reach
     GuardFree
+    RedundantGuards
