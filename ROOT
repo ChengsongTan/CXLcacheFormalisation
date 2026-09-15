@@ -78,3 +78,82 @@ session "AllFixes" = HOL +
     FixShared_CleanEvict_NotLastData
     FixShared_CleanEvict_NotLastDrop
     TopLevelTheorem
+
+session "HitSE_Rules" in "HitSE/rules" = AllFixes +
+  options [document = false]
+  theories
+    HitSE_Defs
+    HitSE_InvalidLoad
+    HitSE_SharedLoad
+    HitSE_InvalidStore
+    HitSE_SharedStore
+    HitSE_SharedEvict
+    HitSE_SharedEvictData
+    HitSE_ModifiedEvict
+    HitSE_SharedSnpInv
+    HitSE_ISDSnpInv
+    HitSE_ISDData
+    HitSE_ISDIData
+    HitSE_IMADData
+    HitSE_SMADData
+    HitSE_IMADGO
+    HitSE_ISADGO
+    HitSE_ISADData
+    HitSE_SMADGO
+    HitSE_SMAGO
+    HitSE_SMADSnpInv
+    HitSE_SMDData
+    HitSE_IMAGO
+    HitSE_ISAGO
+    HitSE_ModifiedStore
+    HitSE_ModifiedLoad
+    HitSE_SIAGO_WritePull
+    HitSE_SIAGO_WritePullDrop
+    HitSE_IIAGO_WritePullDrop
+    HitSE_IIAGO_WritePull
+    HitSE_IMDData
+    HitSE_MIASnpDataInvalid
+    HitSE_MIASnpDataShared
+    HitSE_MIASnpInv
+    HitSE_MIAGO_WritePull
+    HitSE_SIASnpInv
+    HitSE_ModifiedSnpInv
+    HitSE_ModifiedSnpDataShared
+    HitSE_ModifiedSnpDataInvalid
+    HitSE_InvalidRdShared
+    HitSE_InvalidRdOwn
+    HitSE_SharedRdShared
+    HitSE_Shared_CleanEvict_NotLastDrop
+    HitSE_Shared_CleanEvict_NotLastData
+    HitSE_Shared_CleanEvict_Last
+    HitSE_Shared_CleanEvictNoData_NotLast
+    HitSE_Shared_CleanEvictNoData_Last
+    HitSE_SharedDirtyEvict
+    HitSE_ModifiedDirtyEvict
+    HitSE_ModifiedRdShared
+    HitSE_ModifiedRdOwn
+    HitSE_SharedRdOwn
+    HitSE_SharedRdOwnSelf
+    HitSE_SDData
+    HitSE_SADData
+    HitSE_MDData
+    HitSE_IDData
+    HitSE_MADData
+    HitSE_SADRspIFwdM
+    HitSE_SADRspSFwdM
+    HitSE_MADRspIFwdM
+    HitSE_MARspIFwdM
+    HitSE_SARspIFwdM
+    HitSE_SARspSFwdM
+    HitSE_IBData
+    HitSE_SBData
+    HitSE_MBData
+    HitSE_InvalidDirtyEvict
+    HitSE_MARspIHitSE
+    HitSE_SIACGO
+
+session "HitSE_Top" in "HitSE/top" = HitSE_Rules +
+  options [document = false]
+  theories
+    HitSE_Reach
+    GuardFree
