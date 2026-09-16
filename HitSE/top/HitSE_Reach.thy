@@ -91,7 +91,7 @@ lemma HitSE_inv_toggle: "HitSE_inv (toggle T) = HitSE_inv T"
 
 lemmas HitSE_rule_lemmas =
   InvalidLoad'_HitSE SharedLoad'_HitSE InvalidStore'_HitSE SharedStore'_HitSE
-  SharedEvict'_HitSE SharedEvictData'_HitSE ModifiedEvict'_HitSE SharedSnpInv'_HitSE
+  SharedEvict'_HitSE ModifiedEvict'_HitSE SharedSnpInv'_HitSE
   ISDSnpInv'_HitSE ISDData'_HitSE ISDIData'_HitSE IMADData'_HitSE
   SMADData'_HitSE IMADGO'_HitSE ISADGO'_HitSE ISADData'_HitSE
   SMADGO'_HitSE SMAGO'_HitSE SMADSnpInv'_HitSE SMDData'_HitSE

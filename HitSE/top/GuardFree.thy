@@ -26,17 +26,17 @@ proof -
     by (simp only: HostMARspIHitSE_ng'_def HostMARspIHitSE'_def g1)
 qed
 
-text \<open>The rule list of the guard-free model is allTransitions' with HostMARspIHitSE' (index 66) replaced.\<close>
-lemma allTransitions'_length: "length allTransitions' = 69"
+text \<open>The rule list of the guard-free model is allTransitions' with HostMARspIHitSE' (index 65) replaced.\<close>
+lemma allTransitions'_length: "length allTransitions' = 68"
   unfolding allTransitions'_def by simp
 
-lemma allTransitions'_nth_HostMARspIHitSE: "allTransitions' ! 66 = HostMARspIHitSE'"
+lemma allTransitions'_nth_HostMARspIHitSE: "allTransitions' ! 65 = HostMARspIHitSE'"
   unfolding allTransitions'_def by simp
 
 definition allTransitions_ng' :: "(Type1State \<Rightarrow> nat \<Rightarrow> Type1State list) list" where
-  "allTransitions_ng' = allTransitions'[66 := HostMARspIHitSE_ng']"
+  "allTransitions_ng' = allTransitions'[65 := HostMARspIHitSE_ng']"
 
-lemma allTransitions_ng'_nth_HostMARspIHitSE: "allTransitions_ng' ! 66 = HostMARspIHitSE_ng'"
+lemma allTransitions_ng'_nth_HostMARspIHitSE: "allTransitions_ng' ! 65 = HostMARspIHitSE_ng'"
   unfolding allTransitions_ng'_def by (simp add: allTransitions'_length)
 
 lemma steps_ng_eq:
@@ -45,9 +45,9 @@ lemma steps_ng_eq:
 proof -
   have e: "HostMARspIHitSE_ng' T 0 @ HostMARspIHitSE_ng' T 1 = HostMARspIHitSE' T 0 @ HostMARspIHitSE' T 1"
     by (simp only: HostMARspIHitSE_ng_eq[OF assms])
-  have l: "66 < length allTransitions'"
+  have l: "65 < length allTransitions'"
     by (simp add: allTransitions'_length)
-  have n: "map (\<lambda>f. f T 0 @ f T 1) allTransitions' ! 66 = HostMARspIHitSE' T 0 @ HostMARspIHitSE' T 1"
+  have n: "map (\<lambda>f. f T 0 @ f T 1) allTransitions' ! 65 = HostMARspIHitSE' T 0 @ HostMARspIHitSE' T 1"
     by (simp only: nth_map[OF l] allTransitions'_nth_HostMARspIHitSE)
   have m: "map (\<lambda>f. f T 0 @ f T 1) allTransitions_ng' = map (\<lambda>f. f T 0 @ f T 1) allTransitions'"
     by (simp only: allTransitions_ng'_def map_update e n[symmetric] list_update_id)

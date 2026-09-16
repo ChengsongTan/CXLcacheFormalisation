@@ -75,39 +75,39 @@ proof -
 qed
 
 lemma allTransitions'_nth_redundant:
-  "allTransitions' ! 33 = SIASnpInv'" "allTransitions' ! 46 = HostModifiedDirtyEvict'"
-  "allTransitions' ! 65 = HostInvalidDirtyEvict'"
+  "allTransitions' ! 32 = SIASnpInv'" "allTransitions' ! 45 = HostModifiedDirtyEvict'"
+  "allTransitions' ! 64 = HostInvalidDirtyEvict'"
   unfolding allTransitions'_def by simp_all
 
 text \<open>The rule list of the model without the four conjuncts.\<close>
 definition allTransitions_ng2' :: "(Type1State \<Rightarrow> nat \<Rightarrow> Type1State list) list" where
-  "allTransitions_ng2' = allTransitions_ng'[33 := SIASnpInv_ng', 46 := HostModifiedDirtyEvict_ng', 65 := HostInvalidDirtyEvict_ng']"
+  "allTransitions_ng2' = allTransitions_ng'[32 := SIASnpInv_ng', 45 := HostModifiedDirtyEvict_ng', 64 := HostInvalidDirtyEvict_ng']"
 
 lemma steps_ng2_eq:
   assumes "SWMR_state_machine T" "HitSE_inv T"
   shows "concat (map (\<lambda>f. f T 0 @ f T 1) allTransitions_ng2') = concat (map (\<lambda>f. f T 0 @ f T 1) allTransitions')"
 proof -
-  have l: "33 < length allTransitions'" "46 < length allTransitions'" "65 < length allTransitions'" "66 < length allTransitions'"
+  have l: "32 < length allTransitions'" "45 < length allTransitions'" "64 < length allTransitions'" "65 < length allTransitions'"
     by (simp_all add: allTransitions'_length)
-  have e66: "HostMARspIHitSE_ng' T 0 @ HostMARspIHitSE_ng' T 1 = HostMARspIHitSE' T 0 @ HostMARspIHitSE' T 1"
+  have e65: "HostMARspIHitSE_ng' T 0 @ HostMARspIHitSE_ng' T 1 = HostMARspIHitSE' T 0 @ HostMARspIHitSE' T 1"
     by (simp only: HostMARspIHitSE_ng_eq[OF assms(2)])
-  have e33: "SIASnpInv_ng' T 0 @ SIASnpInv_ng' T 1 = SIASnpInv' T 0 @ SIASnpInv' T 1"
+  have e32: "SIASnpInv_ng' T 0 @ SIASnpInv_ng' T 1 = SIASnpInv' T 0 @ SIASnpInv' T 1"
     by (simp only: SIASnpInv_ng_eq[OF assms(1)])
-  have e46: "HostModifiedDirtyEvict_ng' T 0 @ HostModifiedDirtyEvict_ng' T 1 = HostModifiedDirtyEvict' T 0 @ HostModifiedDirtyEvict' T 1"
+  have e45: "HostModifiedDirtyEvict_ng' T 0 @ HostModifiedDirtyEvict_ng' T 1 = HostModifiedDirtyEvict' T 0 @ HostModifiedDirtyEvict' T 1"
     by (simp only: HostModifiedDirtyEvict_ng_eq[OF assms(1)])
-  have e65: "HostInvalidDirtyEvict_ng' T 0 @ HostInvalidDirtyEvict_ng' T 1 = HostInvalidDirtyEvict' T 0 @ HostInvalidDirtyEvict' T 1"
+  have e64: "HostInvalidDirtyEvict_ng' T 0 @ HostInvalidDirtyEvict_ng' T 1 = HostInvalidDirtyEvict' T 0 @ HostInvalidDirtyEvict' T 1"
     by (simp only: HostInvalidDirtyEvict_ng_eq[OF assms(1)])
-  have n66: "map (\<lambda>f. f T 0 @ f T 1) allTransitions' ! 66 = HostMARspIHitSE' T 0 @ HostMARspIHitSE' T 1"
+  have n65: "map (\<lambda>f. f T 0 @ f T 1) allTransitions' ! 65 = HostMARspIHitSE' T 0 @ HostMARspIHitSE' T 1"
     by (simp only: nth_map[OF l(4)] allTransitions'_nth_HostMARspIHitSE)
-  have n33: "map (\<lambda>f. f T 0 @ f T 1) allTransitions' ! 33 = SIASnpInv' T 0 @ SIASnpInv' T 1"
+  have n32: "map (\<lambda>f. f T 0 @ f T 1) allTransitions' ! 32 = SIASnpInv' T 0 @ SIASnpInv' T 1"
     by (simp only: nth_map[OF l(1)] allTransitions'_nth_redundant(1))
-  have n46: "map (\<lambda>f. f T 0 @ f T 1) allTransitions' ! 46 = HostModifiedDirtyEvict' T 0 @ HostModifiedDirtyEvict' T 1"
+  have n45: "map (\<lambda>f. f T 0 @ f T 1) allTransitions' ! 45 = HostModifiedDirtyEvict' T 0 @ HostModifiedDirtyEvict' T 1"
     by (simp only: nth_map[OF l(2)] allTransitions'_nth_redundant(2))
-  have n65: "map (\<lambda>f. f T 0 @ f T 1) allTransitions' ! 65 = HostInvalidDirtyEvict' T 0 @ HostInvalidDirtyEvict' T 1"
+  have n64: "map (\<lambda>f. f T 0 @ f T 1) allTransitions' ! 64 = HostInvalidDirtyEvict' T 0 @ HostInvalidDirtyEvict' T 1"
     by (simp only: nth_map[OF l(3)] allTransitions'_nth_redundant(3))
   have m: "map (\<lambda>f. f T 0 @ f T 1) allTransitions_ng2' = map (\<lambda>f. f T 0 @ f T 1) allTransitions'"
-    by (simp only: allTransitions_ng2'_def allTransitions_ng'_def map_update e66 e33 e46 e65
-                   n66[symmetric] n33[symmetric] n46[symmetric] n65[symmetric] list_update_id)
+    by (simp only: allTransitions_ng2'_def allTransitions_ng'_def map_update e65 e32 e45 e64
+                   n65[symmetric] n32[symmetric] n45[symmetric] n64[symmetric] list_update_id)
   show ?thesis by (simp only: m)
 qed
 
