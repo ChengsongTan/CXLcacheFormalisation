@@ -180,3 +180,12 @@ session "Liveness_Witness" in "Liveness/witness" = Liveness_Top +
   options [document = false]
   theories
     LiveWitness
+
+session "Liveness_Evict" in "Liveness/evict" = Liveness_Witness +
+  options [document = false]
+  theories
+    LiveEvictDefs
+    LiveInvalidEvict
+    LiveSARules
+    LiveEvictTop
+    LiveEvictWitness
