@@ -159,3 +159,24 @@ session "HitSE_Top" in "HitSE/top" = HitSE_Rules +
     HitSE_Reach
     GuardFree
     RedundantGuards
+
+session "Liveness_Rules" in "Liveness/rules" = AllFixes +
+  options [document = false]
+  theories
+    LiveDefs
+    LiveIDDataLate
+    LiveSBDataLate
+    LiveIBDataLate
+    LiveMBDataLate
+    LiveSharedRdOwnSMAD
+    LiveSharedRdOwnIMAD
+
+session "Liveness_Top" in "Liveness/top" = Liveness_Rules +
+  options [document = false]
+  theories
+    LiveTop
+
+session "Liveness_Witness" in "Liveness/witness" = Liveness_Top +
+  options [document = false]
+  theories
+    LiveWitness
